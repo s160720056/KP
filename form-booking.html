@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="zxx">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Form Booking</title>
+		<link rel="icon" href="/images/favicon.png">
+		
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/fontawesome.min.css">
+		<link rel="stylesheet" href="/css/LineIcons.css">
+		<link rel="stylesheet" href="/css/fakeLoader.min.css">
+		<link rel="stylesheet" href="/css/magnific-popup.css">
+		<link rel="stylesheet" href="/css/style.css">
+	</head>
+    <header style="text-align: center;padding-top: 100px;">Booking</header>
+    <nav class="navbar navbar-expand-md fixed-top">
+        <div class="container">
+            <a href="/index.html" class="navbar-brand"><img src="images/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+<div id="contact" class="contact section mt-3">
+    <div class="container">
+        <div class="box-content">
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                       <div class="content">
+                           <h5>Address</h5>
+                           <p>Jl. Babadan Rukun VII, Surabaya, Indonesia 61079</p>
+                           <h5>Phone</h5>
+                           <p>+62-8511-3094-134</p>
+                           <h5>Email</h5>
+                           <p>mimin@originfamous.id</p>
+                           <h5>Tanggal Pesan & Jam</h5>
+
+                       </div>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <div class="content-right">
+                        <form action="contact-form.php" class="contact-form" id="contact-form" method="post">
+                            <div class="row">
+                                <div class="col">
+                                    <div id="first-name-field">
+                                        <input type="text" placeholder="Nama Lengkap" name="name" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                     <div id="email-field" class="form-group">
+                                        <input type="text" class="mb-1" placeholder="No Hp" name="phone" required>
+                                        <small id="emailHelp" class="form-text text-muted text-left">* Yang dapat dihubungi</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div id="email-field">
+                                       <input type="email" placeholder="Email" name="email" required>
+                                   </div>
+                               </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div id="subject-field" class="input-group ">
+                                        <select class="form-select-lg" name="services" required>
+                                            <option selected value="Belum Memilih Layanan">--Pilih Layanan--</option>
+                                            <option value="Solo">Solo</option>
+                                            <option value="Couple">Couple</option>
+                                            <option value="Bestfriend">Bestfriend</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br>
+                             <div class="row">
+                                 <div class="col">
+                                     <div id="date-field" class="input-group">
+                                         <!-- Date input -->
+                                         <input type="date" name="date" required>
+                                     </div>
+                                 </div>
+                                 <div class="col">
+                                     <div id="time-field" class="input-group">
+                                         <!-- Time input -->
+                                         <input type="time" name="time" required>
+                                     </div>
+                                 </div>
+                             </div>
+                            <input type="hidden" name="wa" value="6285157774134">
+                            <button class="button" type="submit" id="submit" name="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
