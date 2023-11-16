@@ -206,8 +206,8 @@
 							</li>
 						</ul>
 					</div>
-					<div class="row no-gutters filtr-container mb-4">
-						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
+					<div class="row no-gutters filter-container mb-4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
 							<div class="content-image">
 								<a href="/images/port1.jpg" class="portfolio-popup">
 									<img src="/images/port1.jpg" alt="">
@@ -221,7 +221,7 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
 							<div class="content-image">
 								<a href="/images/port2.jpg" class="portfolio-popup">
 									<img src="/images/port2.jpg" alt="">
@@ -235,7 +235,7 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
 							<div class="content-image">
 								<a href="/images/port3.jpg" class="portfolio-popup">
 									<img src="/images/port3.jpg" alt="">
@@ -249,7 +249,7 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
 							<div class="content-image">
 								<a href="/images/port4.jpg" class="portfolio-popup">
 									<img src="/images/port4.jpg" alt="">
@@ -263,7 +263,7 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="all,1, 2">
+						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="all,1, 2">
 							<div class="content-image">
 								<a href="/images/port5.jpg" class="portfolio-popup">
 									<img src="/images/port5.jpg" alt="">
@@ -277,7 +277,7 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
 							<div class="content-image">
 								<a href="/images/port6.jpg" class="portfolio-popup">
 									<img src="/images/port6.jpg" alt="">
@@ -291,7 +291,7 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
 							<div class="content-image">
 								<a href="/images/port7.jpg" class="portfolio-popup">
 									<img src="/images/port7.jpg" alt="">
@@ -305,7 +305,7 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
 							<div class="content-image">
 								<a href="/images/port8.jpg" class="portfolio-popup">
 									<img src="/images/port8.jpg" alt="">
@@ -452,28 +452,20 @@ $encryption = openssl_encrypt($current_date, $ciphering, $encryption_key, $optio
 
 
 
-    <div class="float-button">
+<div class="float-button">
         <button class="button">Chat Now!</button>
-        <div class="chat-content"style="display: none;">
-            <div id="chatMessages">
-            
-            </div>
+        <div class="chat-content" style="display: none;">
+            <div id="chatMessages"></div>
         </div>
         <div class="chat-form" style="display: none;">
             <!-- Chat form -->
             <form id="chatForm" method="post" action="chat.php">
-            	
-
-
                 <input type="text" placeholder="Nama" name="nama">
                 <textarea placeholder="Pesan" name="pesan"></textarea>
                 <button type="submit" id="submitChatForm" name="kirim">Kirim</button>
             </form>
         </div>
     </div>
-
-
-
 
 
 
