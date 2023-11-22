@@ -44,7 +44,7 @@ else if(isset($_POST['login'])){
     }
     //create sessuin user
   
-    header("location: index.php");
+    // header("location: index.php");
 }
 
 
