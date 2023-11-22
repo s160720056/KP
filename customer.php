@@ -4,14 +4,14 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Famous Studio</title>
-		<link rel="icon" href="images/favicon.png">
+		<link rel="icon" href="/images/favicon.png">
 		
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/fontawesome.min.css">
-		<link rel="stylesheet" href="css/LineIcons.css">
-		<link rel="stylesheet" href="css/fakeLoader.min.css">
-		<link rel="stylesheet" href="css/magnific-popup.css">
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/fontawesome.min.css">
+		<link rel="stylesheet" href="/css/LineIcons.css">
+		<link rel="stylesheet" href="/css/fakeLoader.min.css">
+		<link rel="stylesheet" href="/css/magnific-popup.css">
+		<link rel="stylesheet" href="/css/style.css">
 	</head>
 	<style type="text/css">
 		.float-button {
@@ -69,7 +69,7 @@
 		<!-- navbar -->
 		<nav class="navbar navbar-expand-md fixed-top">
 			<div class="container">
-				<a href="index.html" class="navbar-brand"><img src="images/logof.png" alt="" width="100%"></a>
+				<a href="index.html" class="navbar-brand"><img src="/images/logof.png" alt="" width="100%"></a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<i class="fa fa-bars"></i>
 				</button>
@@ -118,7 +118,7 @@
 					</div>
 					<div class="col col-sm-12 col-md-6 col-12">
 						<div class="content-image">
-							<img src="images/intro2.jpg" alt="">
+							<img src="/images/intro2.jpg" alt="">
 						</div>
 					</div>
 				</div>
@@ -206,11 +206,11 @@
 							</li>
 						</ul>
 					</div>
-					<div class="row no-gutters filter-container mb-4">
-						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
+					<div class="row no-gutters filtr-container mb-4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
 							<div class="content-image">
-								<a href="images/port1.jpg" class="portfolio-popup">
-									<img src="images/port1.jpg" alt="">
+								<a href="/images/port1.jpg" class="portfolio-popup">
+									<img src="/images/port1.jpg" alt="">
 									<div class="image-overlay"></div>
 									<div class="portfolio-caption">
 										<div class="title">
@@ -221,10 +221,10 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
 							<div class="content-image">
-								<a href="images/port2.jpg" class="portfolio-popup">
-									<img src="images/port2.jpg" alt="">
+								<a href="/images/port2.jpg" class="portfolio-popup">
+									<img src="/images/port2.jpg" alt="">
 									<div class="image-overlay"></div>
 									<div class="portfolio-caption">
 										<div class="title">
@@ -235,10 +235,10 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
 							<div class="content-image">
-								<a href="images/port3.jpg" class="portfolio-popup">
-									<img src="images/port3.jpg" alt="">
+								<a href="/images/port3.jpg" class="portfolio-popup">
+									<img src="/images/port3.jpg" alt="">
 									<div class="image-overlay"></div>
 									<div class="portfolio-caption">
 										<div class="title">
@@ -249,10 +249,10 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
 							<div class="content-image">
-								<a href="images/port4.jpg" class="portfolio-popup">
-									<img src="images/port4.jpg" alt="">
+								<a href="/images/port4.jpg" class="portfolio-popup">
+									<img src="/images/port4.jpg" alt="">
 									<div class="image-overlay"></div>
 									<div class="portfolio-caption">
 										<div class="title">
@@ -263,10 +263,10 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="all,1, 2">
+						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="all,1, 2">
 							<div class="content-image">
-								<a href="images/port5.jpg" class="portfolio-popup">
-									<img src="images/port5.jpg" alt="">
+								<a href="/images/port5.jpg" class="portfolio-popup">
+									<img src="/images/port5.jpg" alt="">
 									<div class="image-overlay"></div>
 									<div class="portfolio-caption">
 										<div class="title">
@@ -277,10 +277,10 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
 							<div class="content-image">
-								<a href="images/port6.jpg" class="portfolio-popup">
-									<img src="images/port6.jpg" alt="">
+								<a href="/images/port6.jpg" class="portfolio-popup">
+									<img src="/images/port6.jpg" alt="">
 									<div class="image-overlay"></div>
 									<div class="portfolio-caption">
 										<div class="title">
@@ -291,10 +291,10 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
 							<div class="content-image">
-								<a href="images/port7.jpg" class="portfolio-popup">
-									<img src="images/port7.jpg" alt="">
+								<a href="/images/port7.jpg" class="portfolio-popup">
+									<img src="/images/port7.jpg" alt="">
 									<div class="image-overlay"></div>
 									<div class="portfolio-caption">
 										<div class="title">
@@ -305,10 +305,10 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
+						<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1,4">
 							<div class="content-image">
-								<a href="images/port8.jpg" class="portfolio-popup">
-									<img src="images/port8.jpg" alt="">
+								<a href="/images/port8.jpg" class="portfolio-popup">
+									<img src="/images/port8.jpg" alt="">
 									<div class="image-overlay"></div>
 									<div class="portfolio-caption">
 										<div class="title">
@@ -392,7 +392,7 @@
 					<p>PRICING TABLE</p>
 					<h3>Your plance, your choise</h3>
 					<br>
-					<img src="images/price.jpeg" alt="" width="100%">
+					<img src="/images/price.jpeg" alt="" width="100%">
 					
 				</div>
 					<img src="/" alt="" srcset="">
@@ -452,20 +452,28 @@ $encryption = openssl_encrypt($current_date, $ciphering, $encryption_key, $optio
 
 
 
-<div class="float-button">
+    <div class="float-button">
         <button class="button">Chat Now!</button>
-        <div class="chat-content" style="display: none;">
-            <div id="chatMessages"></div>
+        <div class="chat-content"style="display: none;">
+            <div id="chatMessages">
+            
+            </div>
         </div>
         <div class="chat-form" style="display: none;">
             <!-- Chat form -->
             <form id="chatForm" method="post" action="chat.php">
+            	
+
+
                 <input type="text" placeholder="Nama" name="nama">
                 <textarea placeholder="Pesan" name="pesan"></textarea>
                 <button type="submit" id="submitChatForm" name="kirim">Kirim</button>
             </form>
         </div>
     </div>
+
+
+
 
 
 
@@ -541,7 +549,7 @@ $encryption = openssl_encrypt($current_date, $ciphering, $encryption_key, $optio
 				<div class="row">
 					<div class="col-md-3 col-sm-6">
 						<div class="content">
-							<div class="brand"><img src="images/logof2.png" alt=""></div>
+							<div class="brand"><img src="/images/logof2.png" alt=""></div>
 							<p>Photo place with the newest and most popular Self Photo, Product Photo, Graduation and Prewedding facilities in Surabaya</p>
 						</div>
 					</div>
@@ -622,14 +630,14 @@ $encryption = openssl_encrypt($current_date, $ciphering, $encryption_key, $optio
 				</script>
 
 		<!-- script -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/fakeLoader.min.js"></script>
-		<script src="js/jquery.filterizr.min.js"></script>
-		<script src="js/imagesloaded.pkgd.min.js"></script>
-		<script src="js/magnific-popup.min.js"></script>
-		<script src="js/contact-form.js"></script>
-		<script src="js/main.js"></script>
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/fakeLoader.min.js"></script>
+		<script src="/js/jquery.filterizr.min.js"></script>
+		<script src="/js/imagesloaded.pkgd.min.js"></script>
+		<script src="/js/magnific-popup.min.js"></script>
+		<script src="/js/contact-form.js"></script>
+		<script src="/js/main.js"></script>
 
 
 
