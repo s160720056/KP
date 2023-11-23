@@ -1,4 +1,4 @@
-<?php
+    <?php
 include 'config.php';
 $conn = connectToDatabase();
 $sql = "SELECT * From foto f inner join kategorifoto kf on f.idKategoriFoto = kf.idKategoriFoto";
@@ -14,8 +14,8 @@ $isi = "
     <div class='card-body'>
         <form method='POST' action='" . htmlspecialchars($_SERVER["PHP_SELF"]) . "'>
             <div class='mb-3'>
-                <label for='harga' class='form-label'>Har   ga</label>
-                <input type='text' class='form-control' id='harga' name='harga' value='".$harga."' required>
+                <label for='foto' class='form-label'>Nama</label>
+                <input type='text' class='form-control' id='foto' name='foto' value='".$foto."' required>
             </div>
            
             <div class='mb-3'>";
@@ -23,57 +23,10 @@ $isi = "
                     $isi.="<input type='hidden' class='form-control' id='idEdit' name='idEdit' value='$idedit' required>";
                 }
                 $isi.="
-                <label for='nama' class='form-label'>Nama Orang Tua/Murid</label>
-                <input type='text' class='form-control' id='nama' name='nama' value='' required>
+                <label for='nama' class='form-label'>Jenis Foto</label>
+                <input type='text' class='form-control' id='foto' name='foto' value='' required>
                 <div id='searchResults'></div>
 
-
-                </div>
-<div class='mb-3'>
-                <div class='row'>
-                    <div class='col-md-6 mb-3'>
-                        <label for='bulan' class='form-label'>Bayar Bulan:</label>
-                        <select class='form-select' id='bulan' name='bulan' required>";
-                           $months = array(
-                                   1 => 'January',
-                                   2 => 'February',
-                                   3 => 'March',
-                                   4 => 'April',
-                                   5 => 'May',
-                                   6 => 'June',
-                                   7 => 'July',
-                                   8 => 'August',
-                                   9 => 'September',
-                                   10 => 'October',
-                                   11 => 'November',
-                                   12 => 'December'
-                               );
-
-                        $isi.="</select>
-                    </div>
-
-                   <div class='col-md-6 mb-3'>
-                          <label for='tahun_ke' class='form-label'>Tahun ke-</label>
-                          <select class='form-select' id='tahun_ke' name='tahun_ke' required>";
-                              
-                              // Get the current year and the previous 10 years
-                              $currentYear = date('Y');
-                              for ($i = $currentYear+2; $i >= $currentYear - 10; $i--) {
-                                if($i==$currentYear && !isset($_GET['idEdit'])){
-                                  $isi.="<option value='$i' selected>$i</option>";
-
-                                  }
-                                  else if(isset($_GET['idEdit']) && $i==$tahun){
-                                     $isi.="<option value='$i' selected>$i</option>";
-                                  }
-                                  else{
-                                  $isi.="<option value='$i'>$i</option>";
-                                }
-                              }
-                    
-                    $isi.="
-                          </select>
-                      </div>
 </div>
 
             </div>
