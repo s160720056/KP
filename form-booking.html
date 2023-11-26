@@ -79,7 +79,7 @@
                                  <div class="col">
                                      <div id="date-field" class="input-group">
                                          <!-- Date input -->
-                                         <input type="date" name="date" required>
+                                            <input type="date" name="date" required min="<?php echo date('Y-m-d'); ?>">
                                      </div>
                                  </div>
                                  <div class="col">
@@ -111,10 +111,11 @@
                                             <option value="19:30">19:30</option>
                                             <option value="20:00">20:00</option>
                                             <option value="20:30">20:30</option>
-                                            <option value="21:00">21:00</option
-                                        
+                                            <option value="21:00">21:00</option>    
+                                        </select>
                                  </div>
                              </div>
+                         </div>
                             <input type="hidden" name="wa" value="6285157774134">
                             <button class="button" type="submit" id="submit" name="submit">Submit</button>
                         </form>

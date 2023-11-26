@@ -5,9 +5,17 @@
         $email = $_POST['email'];
         $wa = $_POST['wa'];
         $service = $_POST['services'];
-        $note = $_POST['note'];
+        $date=$_POST['date'];
+        $time=$_POST['time'];
+ $wa = urlencode($wa);
+$name = urlencode($name);
+$email = urlencode($email);
+$service = urlencode($service);
+$date = urlencode($date);
+$time = urlencode($time);
 
-        header("location:https://api.whatsapp.com/send?phone=$wa&text=Nama:%20$name%0A%0DEmail:%20$email%20%0A%0DLayanan:%20$service%20%0A%0DCatatan:%20$note");
+header("Location: https://api.whatsapp.com/send?phone=$wa&text=Nama:%20$name%0A%0DEmail:%20$email%20%0A%0DLayanan:%20$service%20%0A%0DTanggal%20Pesan:%20$date%0A%0DJam%20Booking:%20$time");
+
     }else{
         echo"<script>
                 window.location=history.go(-1);

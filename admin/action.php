@@ -34,8 +34,9 @@ else if(isset($_POST['login'])){
                 $_SESSION['user'] = $email;
                 echo "<script>alert('Login successful');window.location.href='index.php';</script>";
             }else{
+                echo $row['password'];
                 echo "Password incorrect";
-                 echo "<script>alert('Password incorrect');window.location.href='login.php';</script>";
+               
             }
         }
     }else{

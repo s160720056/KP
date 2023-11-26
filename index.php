@@ -93,8 +93,9 @@
 						<li class="nav-item">
 							<a class="nav-link" href="login.php">Login</a>
 						</li>
+
 						<li class="nav-item">
-							<!-- <a class="nav-link" href="#contact">Contact us</a> -->
+							<a class="nav-link"href="form-booking.html" target="_blank" class="button2">Booking</a>
 						</li>
 					</ul>
 				</div>
