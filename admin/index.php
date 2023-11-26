@@ -65,18 +65,13 @@ session_start();
                                     <a class="nav-link" href="Daftarfoto.php">Daftar foto</a>
                                     <a class="nav-link" href="Kategorifoto.php">Kategori Foto</a>
                                     <a class="nav-link" href="Daftarpesanan.php">Daftar Pesanan</a>
-                                    <a class="nav-link" href="Keteranganpesanan.php">Keterangan Pesanan</a>
-                                    <a class="nav-link" href="Data_Pemesan.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Data Pemesan
-                            </a>    
-                            <a class="nav-link" href="Data_Out.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Data OUT
-                            </a>
-
+                                    <a class="nav-link" href="Keteranganpesanan.php">Keterangan Pesanan</a>   
                                 </nav>
                             </div>
+                            
+
+
+
                             
                             
 
@@ -89,32 +84,28 @@ session_start();
 
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Keuangan
+                                Admin
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Detail Keuangan
+                                        Booking
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="daftarCRDB.php">Semua CR/DB</a>
-                                            <a class="nav-link" href="credit.php">CR / IN</a>
-                                            <a class="nav-link" href="debit.php">DB / OUT</a>
+                                            <a class="nav-link" href="booking.php">Booking</a>
+                                            <a class="nav-link" href="booking-details.php">Booking Details</a>
+
                                             
                                         </nav>
                                     </div>
-                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Laporan Keuangan
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a> 
-                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="ReportPembayaran.php">Laporan Bayar Customer</a>
-                                        </nav>
-                                    </div> 
+                                    add portfolio
+                                    <a class="nav-link" href="portfolio.php">Add Portfolio</a>
+                                    <a class="nav-link" href="about.php">about</a>
+                                    <a class="nav-link" href="service.php">service</a>
+                                    
                                 </nav>
                             </div>
 
