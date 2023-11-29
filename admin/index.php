@@ -68,8 +68,25 @@ session_start();
                                     <a class="nav-link" href="Keteranganpesanan.php">Keterangan Pesanan</a>   
                                 </nav>
                             </div>
-                            
 
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMaster" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Data Master
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseMaster" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="jasa.php">Daftar Jasa</a>
+                                    <!-- <a class="nav-link" href="Kategorifoto.php">Kategori Foto</a>
+                                    <a class="nav-link" href="Daftarpesanan.php">Daftar Pesanan</a>
+                                    <a class="nav-link" href="Keteranganpesanan.php">Keterangan Pesanan</a>    -->
+                                </nav>
+                            </div>
+
+
+
+                                
 
 
                             
@@ -101,7 +118,7 @@ session_start();
                                             
                                         </nav>
                                     </div>
-                                    add portfolio
+                                    
                                     <a class="nav-link" href="portfolio.php">Add Portfolio</a>
                                     <a class="nav-link" href="about.php">about</a>
                                     <a class="nav-link" href="service.php">service</a>
@@ -110,6 +127,9 @@ session_start();
                             </div>
                        
 
+
+                            
+                            
 
 
 
@@ -211,5 +231,13 @@ session_start();
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="js/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <style>
+            .red{
+                color: red;
+            }
+            .green{
+                color: green;
+            }
+        </style>
     </body>
 </html>
