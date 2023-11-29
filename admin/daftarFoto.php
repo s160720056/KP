@@ -95,7 +95,7 @@ $isi = "
 
 
 
-    </div></div>
+    </div></div>
 ";
 
 
