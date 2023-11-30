@@ -6,133 +6,25 @@ $tanggalBooking=$id="";
 $durasiBooking=1;
 
 
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     if(isset($_POST['add'])){
-//     // Handle form submission, process the form data and insert into the database
-//     // Example:
-//     $tanggalBooking = isset($_POST['tanggalBooking']) ? $_POST['tanggalBooking'] : "";
-//     $namaPanggilan = isset($_POST['namaPanggilan']) ? $_POST['namaPanggilan'] : "";
-//     $tempat = isset($_POST['tempat']) ? $_POST['tempat'] : "";
-//     $tglLahir = isset($_POST['tglLahir']) ? $_POST['tglLahir'] : "";
-//     $converted_date = date('Y-m-d', strtotime($tglLahir));
-//     $jenisKelamin = isset($_POST['jenisKelamin']) ? $_POST['jenisKelamin'] : "";
-//     $sekolah = isset($_POST['sekolah']) ? $_POST['sekolah'] : "";
-//     $kelas = isset($_POST['kelas']) ? $_POST['kelas'] : "";
-//     $alamat = isset($_POST['alamat']) ? $_POST['alamat'] : "";
-//     $namaAyah = isset($_POST['namaAyah']) ? $_POST['namaAyah'] : "";
-//     $namaIbu = isset($_POST['namaIbu']) ? $_POST['namaIbu'] : "";
-//     $instagram = isset($_POST['instagram']) ? $_POST['instagram'] : "";
-//     $tb = isset($_POST['tb']) ? $_POST['tb'] : "";
-//     $bb = isset($_POST['bb']) ? $_POST['bb'] : "";
-//     $golonganDarah= isset($_POST['golonganDarah']) ? $_POST['golonganDarah'] : "";
-//     $noHPAyah1 = $_POST['noHPAyah1'];
-//     $noHPAyah2 = $_POST['noHPAyah2'];
-//     $noHPAyah3 = $_POST['noHPAyah3'];
-//     $noHPIbu1 = $_POST['noHPIbu1'];
-//     $noHPIbu2 = $_POST['noHPIbu2'];
-//     $noHPIbu3 = $_POST['noHPIbu3'];
-//     $alergi=$_POST['alergi'];
-//     $keterangan = $_POST['keterangan'];
-//     $idKelompok=isset($_POST['idKelompok']) ? $_POST['idKelompok'] : "";
-    
-//     $sql="INSERT INTO `Booking`( `tanggalBooking`, `namaPanggilan`, `Tempat`, `tanggalLahir`, `jenisKelamin`, `sekolah`, `kelas`, `alamat`, `namaAyah`, `namaIbu`, `Instagram`, `TB(cm)`, `BB(kg)`, `Gol.Darah`, `Alergi`, `idKeterangan`,`idKelompok`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-//         $hasil = $conn->prepare($sql);
-// $hasil->bind_param("ssssssissssssssii", $tanggalBooking, $namaPanggilan, $tempat, $converted_date, $jenisKelamin, $sekolah, $kelas, $alamat, $namaAyah, $namaIbu, $instagram, $tb, $bb, $golonganDarah, $alergi, $keterangan,$idKelompok);
-//     $hasil->execute();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_POST['add'])){
+        $tanggalBooking = isset($_POST['tanggalBooking']) ? $_POST['tanggalBooking'] : "";
+        $waktuBooking = isset($_POST['waktuBooking']) ? $_POST['waktuBooking'] : "";
+        $durasiBooking = isset($_POST['durasiBooking']) ? $_POST['durasiBooking'] : "";
+        //convert $durasi booking to h:i:s
+        $durasiBooking=$durasiBooking.":00:00";
 
-//     $sql="SELECT * from Booking where tanggalBooking='$tanggalBooking'";
-//     $result = $conn->query($sql);
-//     $id=0;
-//     while ($row = $result->fetch_assoc()) {
-//         $id=$row['idBooking'];
-//     }
-    
-// $listnoHPAyah=[$noHPAyah1,$noHPAyah2,$noHPAyah3];
-// $listnoHPIbu=[$noHPIbu1,$noHPIbu2,$noHPIbu3];
-//     for ($i = 0; $i < 3; $i++) {
-        
-//         if ($listnoHPAyah[$i] != "") {
-//             $sql = "INSERT INTO `ayah` (`idBooking`, `namaAyah`, `noHPA`) VALUES (?, ?, ?)";
-//             $hasil = $conn->prepare($sql);
-//             $hasil->bind_param("iss", $id, $namaAyah, $listnoHPAyah[$i]);
-//             $hasil->execute();
-//         }
-
-        
-//         if ($listnoHPIbu[$i] != "") {
-//             $sql = "INSERT INTO `ibu` (`idBooking`, `namaIbu`, `noHPI`) VALUES (?, ?, ?)";
-//             $hasil = $conn->prepare($sql);
-//             $hasil->bind_param("iss", $id, $namaIbu, $listnoHPIbu[$i]);
-//             $hasil->execute();
-//         }
-//     }
-// header("location:Data_Booking.php");
-//         }
-//         else if(isset($_POST['doneEdit'])){
-//             $idBooking=isset($_POST['idBooking']) ? $_POST['idBooking'] : "";
-//             $tanggalBooking = isset($_POST['tanggalBooking']) ? $_POST['tanggalBooking'] : "";
-//             $namaPanggilan = isset($_POST['namaPanggilan']) ? $_POST['namaPanggilan'] : "";
-//             $tempat = isset($_POST['tempat']) ? $_POST['tempat'] : "";
-//             $tglLahir = isset($_POST['tglLahir']) ? $_POST['tglLahir'] : "";
-//             $converted_date = date('Y-m-d', strtotime($tglLahir));
-//             $jenisKelamin = isset($_POST['jenisKelamin']) ? $_POST['jenisKelamin'] : "";
-//             $sekolah = isset($_POST['sekolah']) ? $_POST['sekolah'] : "";
-//             $kelas = isset($_POST['kelas']) ? $_POST['kelas'] : "";
-//             $alamat = isset($_POST['alamat']) ? $_POST['alamat'] : "";
-//             $namaAyah = isset($_POST['namaAyah']) ? $_POST['namaAyah'] : "";
-//             $namaIbu = isset($_POST['namaIbu']) ? $_POST['namaIbu'] : "";
-//             $instagram = isset($_POST['instagram']) ? $_POST['instagram'] : "";
-//             $tb = isset($_POST['tb']) ? $_POST['tb'] : "";
-//             $bb = isset($_POST['bb']) ? $_POST['bb'] : "";
-//             $golonganDarah= isset($_POST['golonganDarah']) ? $_POST['golonganDarah'] : "";
-//             $noHPAyah1 = $_POST['noHPAyah1'];
-//             $noHPAyah2 = $_POST['noHPAyah2'];
-//             $noHPAyah3 = $_POST['noHPAyah3'];
-//             $noHPIbu1 = $_POST['noHPIbu1'];
-//             $noHPIbu2 = $_POST['noHPIbu2'];
-//             $noHPIbu3 = $_POST['noHPIbu3'];
-//             $alergi=$_POST['alergi'];
-//             $keterangan = $_POST['keterangan'];
-//             $idKelompok=$_POST['idKelompok'];
-//             $sql = "UPDATE `Booking` SET `tanggalBooking`=?, `namaPanggilan`=?, `Tempat`=?, `tanggalLahir`=?, `jenisKelamin`=?, `sekolah`=?, `kelas`=?, `alamat`=?, `namaAyah`=?, `namaIbu`=?, `Instagram`=?, `TB(cm)`=?, `BB(kg)`=?, `Gol.Darah`=?, `Alergi`=?, `idKeterangan`=? ,`idKelompok`=? WHERE `idBooking`=?";
-//             $hasil = $conn->prepare($sql);
-//             $hasil->bind_param("ssssssisssssssiiss", $tanggalBooking, $namaPanggilan, $tempat, $converted_date, $jenisKelamin, $sekolah, $kelas, $alamat, $namaAyah, $namaIbu, $instagram, $tb, $bb, $golonganDarah, $alergi, $keterangan,$idKelompok, $idBooking);
-//             $hasil->execute();
-//                 $sql = "DELETE FROM `ayah` WHERE `idBooking` = ? ";
-//                 $hasil = $conn->prepare($sql);
-//                 $hasil->bind_param("i", $idBooking);
-//                 $hasil->execute();
-//                 $sql = "DELETE FROM `ibu` WHERE `idBooking` = ? ";
-//                 $hasil = $conn->prepare($sql);
-//                 $hasil->bind_param("i", $idBooking);
-//                 $hasil->execute();
-
-//             $listnoHPAyah=[$noHPAyah1,$noHPAyah2,$noHPAyah3];
-//             $listnoHPIbu=[$noHPIbu1,$noHPIbu2,$noHPIbu3];
-//                 for ($i = 0; $i < 3; $i++) {
-                    
-//                     if ($listnoHPAyah[$i] != "") {
-//                         $sql = "INSERT INTO `ayah` (`idBooking`, `namaAyah`, `noHPA`) VALUES (?, ?, ?)";
-//                         $hasil = $conn->prepare($sql);
-//                         $hasil->bind_param("iss", $idBooking, $namaAyah, $listnoHPAyah[$i]);
-//                         $hasil->execute();
-//                     }
-
-                    
-//                     if ($listnoHPIbu[$i] != "") {
-//                         $sql = "INSERT INTO `ibu` (`idBooking`, `namaIbu`, `noHPI`) VALUES (?, ?, ?)";
-//                         $hasil = $conn->prepare($sql);
-//                         $hasil->bind_param("iss", $idBooking, $namaIbu, $listnoHPIbu[$i]);
-//                         $hasil->execute();
-//                     }
-//                 }
-// header("location:Data_Booking.php");
-//         }
-
-
-
-
-// }
+        $namaBooking = isset($_POST['namaBooking']) ? $_POST['namaBooking'] : "";
+        $idJasa = isset($_POST['idJasa']) ? $_POST['idJasa'] : "";
+        $status=1;
+        $sql = "INSERT INTO `bookings` (`tanggalBooking`, `waktuBooking`, `durasiBooking`, `namaBooking`, `statusBooking`, `idJasa`) VALUES (?, ?, ?, ?,?, ?)";
+        $hasil = $conn->prepare($sql);
+        $hasil->bind_param("ssisii", $tanggalBooking, $waktuBooking, $durasiBooking, $namaBooking,$status, $idJasa);
+        $hasil->execute();
+        header("location:booking.php");
+    }
+       
+}
 // else if ($_SERVER["REQUEST_METHOD"] == "GET") {
 // if(isset($_GET['idEdit'])){
 // $id=$_GET['idEdit'];
@@ -281,9 +173,9 @@ $isi = "
                 <label for='namaBooking' class='form-label'><b>Nama Booking</b></label>
                 <input type='text' class='form-control' id='namaBooking' name='namaBooking' value='$namaBooking' required>
             <div class='mb-3'>
-                <label for='tanggalBooking' class='form-label'><b>Jenis Booking</b></label>
+                <label for='tanggalBooking' class='form-label'><b>Jenis Jasa</b></label>
                 <select class='form-select' aria-label='Default select example' name='idJasa' required>
-                    <option selected>Pilih Kelompok</option>";
+                    <option selected>Pilih Jasa</option>";
                     $sql="SELECT * from jasa";
                     $result = $conn->query($sql);
                     while ($row = $result->fetch_assoc()) {
@@ -291,12 +183,6 @@ $isi = "
                     }
                     $isi.="</select>
             </div>
-
-
-            
-            
-
-
             <input type='submit' class='btn btn-primary' value='";
                   if(isset($_GET['idEdit'])){
                   $id=$_GET['idEdit'];
