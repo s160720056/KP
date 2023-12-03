@@ -1,11 +1,82 @@
 <?php
+$bulanFilter=$tahunFilter="";
 
 include 'config.php';
-$conn = connectToDatabase(); 
-$sql="SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa ";
+$conn = connectToDatabase();
+$sql = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa ";
 $result = $conn->query($sql);
-$isi="  
-                   
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(isset($_POST['findFilter'])){
+        $bulanFilter = $_POST['bulanFilter'];
+        $tahunFilter = $_POST['tahunFilter'];
+        if($bulanFilter == "" && $tahunFilter == ""){
+            $sql = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa ";
+        }
+        else if($bulanFilter == "" && $tahunFilter != ""){
+            $sql = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa where year(b.tanggalBooking) = '$tahunFilter'";
+        }
+        else if($bulanFilter != "" && $tahunFilter == ""){
+            $sql = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa where month(b.tanggalBooking) = '$bulanFilter'";
+        }
+        else{
+            $sql = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa where month(b.tanggalBooking) = '$bulanFilter' and year(b.tanggalBooking) = '$tahunFilter'";
+        }
+        $result = $conn->query($sql);
+    }
+}
+$isi = "  
+<div class=''>
+<div style='text-align: center;'>
+    <label for='nothing'>////////////// PENCARIAN BULAN/TAHUN /////////////</label>
+</div>
+<BR>
+<form method='POST' action='" . htmlspecialchars($_SERVER["PHP_SELF"]) . "'>
+    <label for='bulan'>Bulan</label>
+    <select class='form-select' id='bulanFilter' name='bulanFilter'>
+        <option value=''>Semua Bulan</option>";
+        
+        $bulanOptions = [
+            1 => 'Januari',
+            2 => 'Ferbuari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+        ];
+        foreach ($bulanOptions as $bulanValue => $bulanLabel) {
+            $selected = ($bulanFilter == $bulanValue) ? 'selected' : '';
+            $isi.="<option value='$bulanValue' $selected>$bulanLabel</option>";
+        }
+        $isi.="
+    </select>
+    </div>
+<div class='mb-3'>
+    <label for='tahunFilter'>Tahun</label>
+    <select class='form-select' id='tahunFilter' name='tahunFilter'>
+        <option value=''>Semua Tahun</option>";
+        
+        $tahunOptions = [
+            2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030
+        ];
+        foreach ($tahunOptions as $tahunValue) {
+            $selected = ($tahunFilter == $tahunValue) ? 'selected' : '';
+            $isi.= "<option value='$tahunValue' $selected>$tahunValue</option>";
+        }
+        $isi.="
+    </select>
+</div>
+  <button type='submit' name='findFilter' class='btn btn-primary' id='filterButton'>Cari</button>
+  </form>
+
+
+
+</div>
 <div class='card mb-4' style='margin-top:10%'>
 
                             <div class='card-header' >
@@ -44,24 +115,24 @@ $isi="
                                        ";
 
 
-                                    while ($row = $result->fetch_assoc()) {
-                                        
-                                        $isi.="<tr>
-                                                <td>".$row['tanggalBooking']."</td>
-                                                <td>".$row['waktuBooking']."</td>
-                                                <td>".$row['durasiBooking']."</td>
-                                                <td>".$row['namaBooking']."</td>
+while ($row = $result->fetch_assoc()) {
+
+    $isi .= "<tr>
+                                                <td>" . $row['tanggalBooking'] . "</td>
+                                                <td>" . $row['waktuBooking'] . "</td>
+                                                <td>" . $row['durasiBooking'] . "</td>
+                                                <td>" . $row['namaBooking'] . "</td>
                                                 <td></td>
-                                                <td>".$row['namaJasa']."</td>
-                                                <td>".$row['statusBooking']."</td>
+                                                <td>" . $row['namaJasa'] . "</td>
+                                                <td>" . $row['statusBooking'] . "</td>
                                                 <td>
-                                                    <a href='actionBooking.php?idEdit=".$row['idBooking']."' class='btn btn-primary'>Edit</a>
-                                                    <a onclick='hapus(".$row['idBooking'].")' class='btn btn-danger'>Delete</a>
+                                                    <a href='actionBooking.php?idEdit=" . $row['idBooking'] . "' class='btn btn-primary'>Edit</a>
+                                                    <a onclick='hapus(" . $row['idBooking'] . ")' class='btn btn-danger'>Delete</a>
                                                 </td>
                                             </tr>";
-                                    }
+}
 
-                                     $isi.="
+$isi .= "
                                       
                                     </tbody>
                                 </table>
@@ -88,7 +159,9 @@ $isi="
 
 
 
-include 'index.php';  
-?>
+include 'index.php';
+$isi="<script>
 
-        
+
+</script>
+";

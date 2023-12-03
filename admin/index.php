@@ -54,20 +54,20 @@ session_start();
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <div class="sb-sidenav-menu-heading">Data Pesanan</div>
+                            <!-- <div class="sb-sidenav-menu-heading">Data Pesanan</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Data Pesanan
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            </a> -->
+                            <!-- <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="Daftarfoto.php">Daftar foto</a>
                                     <a class="nav-link" href="Kategorifoto.php">Kategori Foto</a>
                                     <a class="nav-link" href="Daftarpesanan.php">Daftar Pesanan</a>
                                     <a class="nav-link" href="Keteranganpesanan.php">Keterangan Pesanan</a>   
                                 </nav>
-                            </div>
+                            </div> -->
 
 
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMaster" aria-expanded="false" aria-controls="collapseLayouts">
@@ -113,15 +113,15 @@ session_start();
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
                                             <a class="nav-link" href="booking.php">Booking</a>
-                                            <a class="nav-link" href="booking-details.php">Booking Details</a>
+                                            <!-- <a class="nav-link" href="booking-details.php">Booking Details</a> -->
 
                                             
                                         </nav>
                                     </div>
-                                    
+<!--                                     
                                     <a class="nav-link" href="portfolio.php">Add Portfolio</a>
                                     <a class="nav-link" href="about.php">about</a>
-                                    <a class="nav-link" href="service.php">service</a>
+                                    <a class="nav-link" href="service.php">service</a> -->
                                     
                                 </nav>
                             </div>
