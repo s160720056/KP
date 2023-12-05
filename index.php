@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 	<head>
@@ -90,13 +93,33 @@
 						<li class="nav-item">
 							<a class="nav-link" href="#pricing">Pricing</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="login.php">Login</a>
-						</li>
+						<?php
+						if(isset($_SESSION['idUser'])){
+
+						}
+						else{
+							echo "<li class='nav-item'>
+							<a class='nav-link'href='login.php'  class='button2'>Login</a>
+						</li>";
+						}
+
+
+
+
+
+?>
 
 						<li class="nav-item">
-							<a class="nav-link"href="form-booking.html" target="_blank" class="button2">Booking</a>
+							<a class="nav-link"href="form-booking.php" class="button2">Booking</a>
 						</li>
+						<?php 
+						if(isset($_SESSION['idUser'])){
+							echo "<li class='nav-item'>
+							<a class='nav-link'href='logout.php' class='button2'>Logout</a>
+						</li>";
+
+						}
+						?>
 					</ul>
 				</div>
 			</div>
@@ -397,7 +420,7 @@
 					
 				</div>
 					<img src="/" alt="" srcset="">
-					<a href="form-booking.html" target="_blank" class="button2">Booking</a>
+					<a href="form-booking.php" class="button2">Booking</a>
 
 			</div>
 		</div>

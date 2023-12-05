@@ -1,4 +1,17 @@
+<?php
+session_start();
+if(isset($_SESSION['idUser'])){
 
+}   
+else{
+    header("location:login.php");
+}
+
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 	<head>
