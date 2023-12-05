@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2023 at 04:09 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Dec 05, 2023 at 03:57 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -49,6 +49,30 @@ CREATE TABLE `akun` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `idBooking` int(255) NOT NULL,
+  `tanggalBooking` date NOT NULL,
+  `waktuBooking` time(6) NOT NULL,
+  `durasiBooking` int(255) NOT NULL,
+  `namaBooking` varchar(255) NOT NULL,
+  `statusBooking` enum('0','1','2','') NOT NULL,
+  `idJasa` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`idBooking`, `tanggalBooking`, `waktuBooking`, `durasiBooking`, `namaBooking`, `statusBooking`, `idJasa`) VALUES
+(1, '2023-11-29', '17:00:00.000000', 1, 'qrqrrqr', '0', 1),
+(2, '2023-11-24', '18:30:00.000000', 1, 'queue', '0', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `extras`
 --
 
@@ -62,6 +86,18 @@ CREATE TABLE `extras` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `foto`
+--
+
+CREATE TABLE `foto` (
+  `idFoto` int(255) NOT NULL,
+  `idKategoriFoto` int(255) NOT NULL,
+  `Foto` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `fotografers`
 --
 
@@ -71,6 +107,35 @@ CREATE TABLE `fotografers` (
   `no_hp` varchar(45) DEFAULT NULL,
   `biaya` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jasa`
+--
+
+CREATE TABLE `jasa` (
+  `idJasa` int(255) NOT NULL,
+  `namaJasa` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `jasa`
+--
+
+INSERT INTO `jasa` (`idJasa`, `namaJasa`) VALUES
+(1, 'as');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategorifoto`
+--
+
+CREATE TABLE `kategorifoto` (
+  `idKategoriFoto` int(255) NOT NULL,
+  `namaKategori` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -157,9 +222,21 @@ CREATE TABLE `products` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `status` enum('pelanggan','fotografer','admin') DEFAULT NULL
+  `inputFirstName` varchar(100) NOT NULL,
+  `inputLastName` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `passwordConfirm` varchar(255) NOT NULL,
+  `STATUS` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `inputFirstName`, `inputLastName`, `email`, `password`, `passwordConfirm`, `STATUS`) VALUES
+(2, 'Fadli', 'Ramadhan', 'fadli@mail.com', '$2y$10$ipnaAcnAUdPE.THf2R7QnO0eEvDEGJV2YKbVHf', '$2y$10$aLbaYUNX4CmOOhB9zySm6uRWSnqO5V4gJ9mAkRXDqnX8Y8lJuACDC', ''),
+(9, 'Fernando', 'Wilim', 'xtrac8996@gmail.com', '$2y$10$Mru1wsfCyvzlJ1pQ9xiIqeIp6ja65/EvadQNPcy3pdsULXB8Uu4qu', '$2y$10$X6s/u5kIjiMLSoYHcLqAMOcIMoK9/6dNWLCQSavOIDf0W660oTJEq', 'customer');
 
 --
 -- Indexes for dumped tables
@@ -178,16 +255,40 @@ ALTER TABLE `akun`
   ADD PRIMARY KEY (`idAkun`);
 
 --
+-- Indexes for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`idBooking`);
+
+--
 -- Indexes for table `extras`
 --
 ALTER TABLE `extras`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `foto`
+--
+ALTER TABLE `foto`
+  ADD PRIMARY KEY (`idFoto`);
+
+--
 -- Indexes for table `fotografers`
 --
 ALTER TABLE `fotografers`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jasa`
+--
+ALTER TABLE `jasa`
+  ADD PRIMARY KEY (`idJasa`);
+
+--
+-- Indexes for table `kategorifoto`
+--
+ALTER TABLE `kategorifoto`
+  ADD PRIMARY KEY (`idKategoriFoto`);
 
 --
 -- Indexes for table `livechats`
@@ -240,6 +341,36 @@ ALTER TABLE `users`
 --
 ALTER TABLE `akun`
   MODIFY `idAkun` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `idBooking` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `foto`
+--
+ALTER TABLE `foto`
+  MODIFY `idFoto` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `jasa`
+--
+ALTER TABLE `jasa`
+  MODIFY `idJasa` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `kategorifoto`
+--
+ALTER TABLE `kategorifoto`
+  MODIFY `idKategoriFoto` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
