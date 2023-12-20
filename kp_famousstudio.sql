@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2023 at 03:57 PM
+-- Generation Time: Dec 20, 2023 at 04:30 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -68,20 +68,11 @@ CREATE TABLE `bookings` (
 
 INSERT INTO `bookings` (`idBooking`, `tanggalBooking`, `waktuBooking`, `durasiBooking`, `namaBooking`, `statusBooking`, `idJasa`) VALUES
 (1, '2023-11-29', '17:00:00.000000', 1, 'qrqrrqr', '0', 1),
-(2, '2023-11-24', '18:30:00.000000', 1, 'queue', '0', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `extras`
---
-
-CREATE TABLE `extras` (
-  `id` int(11) NOT NULL,
-  `time` int(11) DEFAULT NULL,
-  `print_polaroid` enum('1 grid','2 grid') DEFAULT NULL,
-  `costume` enum('1','0') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+(2, '2023-11-24', '18:30:00.000000', 1, 'queue', '0', 1),
+(3, '2023-12-20', '14:00:00.000000', 1, 'ash', '0', 1),
+(5, '2023-12-19', '15:30:00.000000', 1, 'abccc', '0', 2),
+(6, '2023-12-19', '00:00:00.000000', 1, 'aaa', '0', 0),
+(7, '2023-12-19', '15:00:00.000000', 1, 'aaa', '0', 2);
 
 -- --------------------------------------------------------
 
@@ -92,21 +83,8 @@ CREATE TABLE `extras` (
 CREATE TABLE `foto` (
   `idFoto` int(255) NOT NULL,
   `idKategoriFoto` int(255) NOT NULL,
-  `Foto` varchar(255) NOT NULL
+  `urlFoto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fotografers`
---
-
-CREATE TABLE `fotografers` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(45) DEFAULT NULL,
-  `no_hp` varchar(45) DEFAULT NULL,
-  `biaya` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -116,15 +94,21 @@ CREATE TABLE `fotografers` (
 
 CREATE TABLE `jasa` (
   `idJasa` int(255) NOT NULL,
-  `namaJasa` varchar(1000) NOT NULL
+  `namaJasa` varchar(1000) NOT NULL,
+  `status` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jasa`
 --
 
-INSERT INTO `jasa` (`idJasa`, `namaJasa`) VALUES
-(1, 'as');
+INSERT INTO `jasa` (`idJasa`, `namaJasa`, `status`) VALUES
+(1, 'as', 2),
+(2, 'Best Friend', 2),
+(3, 'Self Studio', 1),
+(4, 'Wedding', 1),
+(5, 'Graduation', 1),
+(6, 'Product', 1);
 
 -- --------------------------------------------------------
 
@@ -236,7 +220,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `inputFirstName`, `inputLastName`, `email`, `password`, `passwordConfirm`, `STATUS`) VALUES
 (2, 'Fadli', 'Ramadhan', 'fadli@mail.com', '$2y$10$ipnaAcnAUdPE.THf2R7QnO0eEvDEGJV2YKbVHf', '$2y$10$aLbaYUNX4CmOOhB9zySm6uRWSnqO5V4gJ9mAkRXDqnX8Y8lJuACDC', ''),
-(9, 'Fernando', 'Wilim', 'xtrac8996@gmail.com', '$2y$10$Mru1wsfCyvzlJ1pQ9xiIqeIp6ja65/EvadQNPcy3pdsULXB8Uu4qu', '$2y$10$X6s/u5kIjiMLSoYHcLqAMOcIMoK9/6dNWLCQSavOIDf0W660oTJEq', 'customer');
+(9, 'Fernando', 'Wilim', 'xtrac8996@gmail.com', '$2y$10$Mru1wsfCyvzlJ1pQ9xiIqeIp6ja65/EvadQNPcy3pdsULXB8Uu4qu', '$2y$10$X6s/u5kIjiMLSoYHcLqAMOcIMoK9/6dNWLCQSavOIDf0W660oTJEq', 'customer'),
+(10, 'Fernando', 'Wilim', 'a@gmail.com', '$2y$10$3At/9jkxRxcDN0blyaGqd./tLVpbpF5vRFFkvA9UIafpSkgLl.jGi', '', 'customer');
 
 --
 -- Indexes for dumped tables
@@ -261,22 +246,10 @@ ALTER TABLE `bookings`
   ADD PRIMARY KEY (`idBooking`);
 
 --
--- Indexes for table `extras`
---
-ALTER TABLE `extras`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `foto`
 --
 ALTER TABLE `foto`
   ADD PRIMARY KEY (`idFoto`);
-
---
--- Indexes for table `fotografers`
---
-ALTER TABLE `fotografers`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `jasa`
@@ -346,7 +319,7 @@ ALTER TABLE `akun`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `idBooking` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idBooking` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `foto`
@@ -358,7 +331,7 @@ ALTER TABLE `foto`
 -- AUTO_INCREMENT for table `jasa`
 --
 ALTER TABLE `jasa`
-  MODIFY `idJasa` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idJasa` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `kategorifoto`
@@ -370,7 +343,7 @@ ALTER TABLE `kategorifoto`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

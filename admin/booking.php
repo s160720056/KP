@@ -1,24 +1,21 @@
 <?php
-$bulanFilter=$tahunFilter="";
+$bulanFilter = $tahunFilter = "";
 
 include 'config.php';
 $conn = connectToDatabase();
-$sql = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa ";
+$sql = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa order by b.tanggalBooking desc , b.waktuBooking desc ";
 $result = $conn->query($sql);
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(isset($_POST['findFilter'])){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['findFilter'])) {
         $bulanFilter = $_POST['bulanFilter'];
         $tahunFilter = $_POST['tahunFilter'];
-        if($bulanFilter == "" && $tahunFilter == ""){
+        if ($bulanFilter == "" && $tahunFilter == "") {
             $sql = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa ";
-        }
-        else if($bulanFilter == "" && $tahunFilter != ""){
+        } else if ($bulanFilter == "" && $tahunFilter != "") {
             $sql = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa where year(b.tanggalBooking) = '$tahunFilter'";
-        }
-        else if($bulanFilter != "" && $tahunFilter == ""){
+        } else if ($bulanFilter != "" && $tahunFilter == "") {
             $sql = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa where month(b.tanggalBooking) = '$bulanFilter'";
-        }
-        else{
+        } else {
             $sql = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa where month(b.tanggalBooking) = '$bulanFilter' and year(b.tanggalBooking) = '$tahunFilter'";
         }
         $result = $conn->query($sql);
@@ -34,41 +31,41 @@ $isi = "
     <label for='bulan'>Bulan</label>
     <select class='form-select' id='bulanFilter' name='bulanFilter'>
         <option value=''>Semua Bulan</option>";
-        
-        $bulanOptions = [
-            1 => 'Januari',
-            2 => 'Ferbuari',
-            3 => 'Maret',
-            4 => 'April',
-            5 => 'Mei',
-            6 => 'Juni',
-            7 => 'Juli',
-            8 => 'Agustus',
-            9 => 'September',
-            10 => 'Oktober',
-            11 => 'November',
-            12 => 'Desember'
-        ];
-        foreach ($bulanOptions as $bulanValue => $bulanLabel) {
-            $selected = ($bulanFilter == $bulanValue) ? 'selected' : '';
-            $isi.="<option value='$bulanValue' $selected>$bulanLabel</option>";
-        }
-        $isi.="
+
+$bulanOptions = [
+    1 => 'Januari',
+    2 => 'Ferbuari',
+    3 => 'Maret',
+    4 => 'April',
+    5 => 'Mei',
+    6 => 'Juni',
+    7 => 'Juli',
+    8 => 'Agustus',
+    9 => 'September',
+    10 => 'Oktober',
+    11 => 'November',
+    12 => 'Desember'
+];
+foreach ($bulanOptions as $bulanValue => $bulanLabel) {
+    $selected = ($bulanFilter == $bulanValue) ? 'selected' : '';
+    $isi .= "<option value='$bulanValue' $selected>$bulanLabel</option>";
+}
+$isi .= "
     </select>
     </div>
 <div class='mb-3'>
     <label for='tahunFilter'>Tahun</label>
     <select class='form-select' id='tahunFilter' name='tahunFilter'>
         <option value=''>Semua Tahun</option>";
-        
-        $tahunOptions = [
-            2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030
-        ];
-        foreach ($tahunOptions as $tahunValue) {
-            $selected = ($tahunFilter == $tahunValue) ? 'selected' : '';
-            $isi.= "<option value='$tahunValue' $selected>$tahunValue</option>";
-        }
-        $isi.="
+
+$tahunOptions = [
+    2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030
+];
+foreach ($tahunOptions as $tahunValue) {
+    $selected = ($tahunFilter == $tahunValue) ? 'selected' : '';
+    $isi .= "<option value='$tahunValue' $selected>$tahunValue</option>";
+}
+$isi .= "
     </select>
 </div>
   <button type='submit' name='findFilter' class='btn btn-primary' id='filterButton'>Cari</button>
@@ -93,7 +90,7 @@ $isi = "
                                            <th>Date</th>
                                            <th>Time</th>
                                            <th>Duration</th>
-                                           <th>Booking</th>
+                                           <th>Nama Booking</th>
                                            <th>Team</th>
                                            <th>Appointment type</th>
                                            <th>Status</th>
@@ -105,7 +102,7 @@ $isi = "
                                              <th>Date</th>
                                              <th>Time</th>
                                              <th>Duration</th>
-                                             <th>Booking</th>
+                                             <th>Nama Booking</th>
                                              <th>Team</th>
                                              <th>Appointment type</th>
                                              <th>Status</th>
@@ -115,12 +112,17 @@ $isi = "
                                        ";
 
 
-while ($row = $result->fetch_assoc()) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        //remove $waktubooking	17:00:00.000000 to 17:00
+                                        $waktuBooking = substr($row['waktuBooking'], 0, 5);
+                                           $dateString=$row['tanggalBooking'];
+                                        $dateTime = new DateTime($dateString);
+                                        $dmyFormat = $dateTime->format("d-m-Y");
 
-    $isi .= "<tr>
-                                                <td>" . $row['tanggalBooking'] . "</td>
-                                                <td>" . $row['waktuBooking'] . "</td>
-                                                <td>" . $row['durasiBooking'] . "</td>
+                                        $isi .= "<tr>
+                                                <td>" . $dmyFormat . "</td>
+                                                <td>" . $waktuBooking . " </td>
+                                                <td>" . $row['durasiBooking'] . " Jam </td>
                                                 <td>" . $row['namaBooking'] . "</td>
                                                 <td></td>
                                                 <td>" . $row['namaJasa'] . "</td>
@@ -130,9 +132,9 @@ while ($row = $result->fetch_assoc()) {
                                                     <a onclick='hapus(" . $row['idBooking'] . ")' class='btn btn-danger'>Delete</a>
                                                 </td>
                                             </tr>";
-}
+                                                        }
 
-$isi .= "
+                                                        $isi .= "
                                       
                                     </tbody>
                                 </table>
@@ -160,7 +162,7 @@ $isi .= "
 
 
 include 'index.php';
-$isi="<script>
+$isi = "<script>
 
 
 </script>

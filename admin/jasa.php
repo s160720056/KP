@@ -2,7 +2,7 @@
 include 'config.php';
 $conn = connectToDatabase();
 
-$sql = "SELECT * FROM jasa";
+$sql = "SELECT * FROM jasa where status=1";
 $result = $conn->query($sql);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['edit'])) {
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $namaJasa = $_POST['namaJasa'];
 
         // Perform the database insert operation using the provided data
-        $sql = "INSERT INTO `Jasa` (`namaJasa`) VALUES (?)";
+        $sql = "INSERT INTO `Jasa` (`namaJasa`,`status`) VALUES (?,1)";
         $hasil = $conn->prepare($sql);
         $hasil->bind_param("s", $namaJasa);
         $hasil->execute();
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $idJasa = $_GET['idDell'];
 
         // Check if there are any associated Jasas in the Jasa
-        $sqlCheck = "SELECT * FROM booking WHERE idJasa = ?";
+        $sqlCheck = "SELECT * FROM bookings WHERE idJasa = ?";
         $stmtCheck = $conn->prepare($sqlCheck);
         $stmtCheck->bind_param("i", $idJasa);
         $stmtCheck->execute();
@@ -46,24 +46,35 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
         if ($resultCheck->num_rows > 0) {
             // Jasas are associated with this Jasa, cannot delete
-            echo "<script>alert('Tidak Bisa Menghapus Data, Pastikan Dalam Jasa sudah Tidak ada Jasa!')</script>";
+            $sqlDelete = "UPDATE Jasa SET status=2 WHERE idJasa = ?";
+            $stmtDelete = $conn->prepare($sqlDelete);
+            $stmtDelete->bind_param("i", $idJasa);
+            $stmtDelete->execute();
+            // echo "<script>alert('Tidak Bisa Menghapus Data, Pastikan Dalam Jasa sudah Tidak ada Jasa!')</script>";
         } else {
             // No associated Jasas, safe to delete the Jasa
-            $sqlDelete = "DELETE FROM Jasa WHERE idJasa = ?";
+            //update jasa set status=2 where idJasa=?
+            $sqlDelete = "UPDATE Jasa SET status=2 WHERE idJasa = ?";
             $stmtDelete = $conn->prepare($sqlDelete);
             $stmtDelete->bind_param("i", $idJasa);
             $stmtDelete->execute();
 
-            // Redirect to the same page to prevent form resubmission on refresh
-            header("Location: " . $_SERVER['PHP_SELF']);
-            exit();
+
+            // $sqlDelete = "DELETE FROM Jasa WHERE idJasa = ?";
+            // $stmtDelete = $conn->prepare($sqlDelete);
+            // $stmtDelete->bind_param("i", $idJasa);
+            // $stmtDelete->execute();
+
+            // // Redirect to the same page to prevent form resubmission on refresh
+            // header("Location: " . $_SERVER['PHP_SELF']);
+            // exit();
         }
     } else if (isset($_GET['add'])) {
         // Handle form submission and insert group data into the database
         $namaJasa = $_GET['namaJasa'];
 
         // Perform the database insert operation using the provided data
-        $sql = "INSERT INTO `Jasa` (`namaJasa`) VALUES (?)";
+        $sql = "INSERT INTO `Jasa` (`namaJasa`,`status`) VALUES (?,1)";
         $hasil = $conn->prepare($sql);
         $hasil->bind_param("s", $namaJasa);
         $hasil->execute();

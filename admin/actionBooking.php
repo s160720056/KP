@@ -2,30 +2,63 @@
 
 include 'config.php';
 $conn = connectToDatabase(); 
-$tanggalBooking=$id="";
+$tanggalBooking=date('Y-m-d');
+$id="";
 $durasiBooking=1;
+$namaBooking="";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['add'])){
         $tanggalBooking = isset($_POST['tanggalBooking']) ? $_POST['tanggalBooking'] : "";
         $waktuBooking = isset($_POST['waktuBooking']) ? $_POST['waktuBooking'] : "";
-        $durasiBooking = isset($_POST['durasiBooking']) ? $_POST['durasiBooking'] : "";
+        $durasiBooking = isset($_POST['durasiBooking']) ? $_POST['durasiBooking'] : "1";
         //convert $durasi booking to h:i:s
         $durasiBooking=$durasiBooking.":00:00";
 
         $namaBooking = isset($_POST['namaBooking']) ? $_POST['namaBooking'] : "";
         $idJasa = isset($_POST['idJasa']) ? $_POST['idJasa'] : "";
         $status=1;
-        $sql = "INSERT INTO `bookings` (`tanggalBooking`, `waktuBooking`, `durasiBooking`, `namaBooking`, `statusBooking`, `idJasa`) VALUES (?, ?, ?, ?,?, ?)";
-        $hasil = $conn->prepare($sql);
-        $hasil->bind_param("ssisii", $tanggalBooking, $waktuBooking, $durasiBooking, $namaBooking,$status, $idJasa);
-        $hasil->execute();
-        header("location:booking.php");
+        //check if date(12/09/2023) < today and time(13:00) < now
+        $tanggalBooking = date('Y-m-d', strtotime($tanggalBooking));
+        $waktuBooking = date('H:i:s', strtotime($waktuBooking));
+        $tanggalBooking = $tanggalBooking." ".$waktuBooking;
+        $tanggalBooking = date('Y-m-d H:i:s', strtotime($tanggalBooking));
+        $now = date('Y-m-d H:i:s');
+        if($tanggalBooking<$now){
+            echo "<script>alert('Tanggal dan Waktu Sudah Lewat')</script>";
+        }
+        else{
+            //check if date and time is available
+            $sql="SELECT * from bookings where tanggalBooking='$tanggalBooking' and waktuBooking='$waktuBooking' ";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                //date and time is not available
+                echo "<script>alert('Tanggal dan Waktu Sudah Terpakai')</script>";
+            } else {
+                //date and time is available
+                $sql = "INSERT INTO `bookings` (`tanggalBooking`, `waktuBooking`, `durasiBooking`, `namaBooking`, `statusBooking`, `idJasa`) VALUES (?, ?, ?, ?,?, ?)";
+                $hasil = $conn->prepare($sql);
+                $hasil->bind_param("ssisii", $tanggalBooking, $waktuBooking, $durasiBooking, $namaBooking,$status, $idJasa);
+                $hasil->execute();
+                header("location:booking.php");
+            }
+        }
+
+
     }
        
 }
-// else if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+else if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if(isset($_GET['idDell'])){
+        $id=$_GET['idDell'];
+        $sql="DELETE FROM bookings WHERE idBooking=$id";
+        $result = $conn->query($sql);
+        header("location:booking.php");
+    
+    }
+}
 // if(isset($_GET['idEdit'])){
 // $id=$_GET['idEdit'];
 
@@ -164,19 +197,19 @@ $isi = "
                 <option value='20:30'>20:30</option>
                 <option value='21:00'>21:00</option>    
             </select>
-            </div>
-            <div class='mb-3'>
-                <label for='durasiBooking' class='form-label'><b>Durasi Booking (Jam)</b></label>
-                <input type='number' class='form-control' id='durasiBooking' name='durasiBooking' min='1' value='$durasiBooking' required>
-            </div>
-            <div class='mb-3'>
+            </div>";
+            // <div class='mb-3'>
+            //     <label for='durasiBooking' class='form-label'><b>Durasi Booking (Jam)</b></label>
+            //     <input type='number' class='form-control' id='durasiBooking' name='durasiBooking' min='1' value='$durasiBooking' required>
+            // </div>
+            $isi.="<div class='mb-3'>
                 <label for='namaBooking' class='form-label'><b>Nama Booking</b></label>
                 <input type='text' class='form-control' id='namaBooking' name='namaBooking' value='$namaBooking' required>
             <div class='mb-3'>
                 <label for='tanggalBooking' class='form-label'><b>Jenis Jasa</b></label>
                 <select class='form-select' aria-label='Default select example' name='idJasa' required>
-                    <option selected>Pilih Jasa</option>";
-                    $sql="SELECT * from jasa";
+                    ";
+                    $sql="SELECT * from jasa where status=1 ";
                     $result = $conn->query($sql);
                     while ($row = $result->fetch_assoc()) {
                         $isi.="<option value='".$row['idJasa']."'>".$row['namaJasa']."</option>";

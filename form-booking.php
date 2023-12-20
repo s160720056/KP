@@ -1,5 +1,7 @@
 <?php
 session_start();
+include 'config.php';
+$conn = connectToDatabase(); 
 if(isset($_SESSION['idUser'])){
 
 }   
@@ -79,10 +81,19 @@ else{
                                 <div class="col">
                                     <div id="subject-field" class="input-group ">
                                         <select class="form-select-lg" name="services" required>
-                                            <option selected value="Belum Memilih Layanan">--Pilih Layanan--</option>
+                                        <option selected value="Belum Memilih Layanan">--Pilih Layanan--</option>
+                                            <?php
+                                              $sql="SELECT * from jasa where status=1";
+                                              $result = $conn->query($sql);
+                                              while ($row = $result->fetch_assoc()) {
+                                                $isi="<option value='".$row['namaJasa']."'>".$row['namaJasa']."</option>";
+                                                echo $isi;
+                                              }
+                                            ?>
+<!--                                        
                                             <option value="Solo">Solo</option>
                                             <option value="Couple">Couple</option>
-                                            <option value="Bestfriend">Bestfriend</option>
+                                            <option value="Bestfriend">Bestfriend</option> -->
                                         </select>
                                     </div>
                                 </div>
