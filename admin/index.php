@@ -105,6 +105,7 @@ if(!isset($_SESSION['user'])){
                                 Admin
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
@@ -119,9 +120,9 @@ if(!isset($_SESSION['user'])){
                                             
                                         </nav>
                                     </div>
-<!--                                     
-                                    <a class="nav-link" href="portfolio.php">Add Portfolio</a>
-                                    <a class="nav-link" href="about.php">about</a>
+                                    
+                                    <a class="nav-link" href="dataPelanggan.php">Data Pelanggan</a>
+                                   <!--  <a class="nav-link" href="about.php">about</a>
                                     <a class="nav-link" href="service.php">service</a> -->
                                     
                                 </nav>
