@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 19, 2024 at 05:31 AM
+-- Host: localhost
+-- Generation Time: Jun 19, 2024 at 02:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -54,16 +54,12 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`idBooking`, `tanggalBooking`, `waktuBooking`, `durasiBooking`, `namaBooking`, `statusBooking`, `idJasa`) VALUES
+(1, '2023-11-29', '17:00:00.000000', 1, 'qrqrrqr', '0', 1),
+(2, '2023-11-24', '18:30:00.000000', 1, 'queue', '0', 1),
+(3, '2023-12-20', '14:00:00.000000', 1, 'ash', '0', 1),
+(5, '2023-12-19', '15:30:00.000000', 1, 'abccc', '0', 2),
 (6, '2023-12-19', '00:00:00.000000', 1, 'aaa', '0', 0),
-(8, '2024-02-21', '09:00:00.000000', 1, 'qrqrrqr', '0', 3),
-(9, '2024-02-21', '09:00:00.000000', 1, 'rhrdhr', '0', 3),
-(10, '2024-02-21', '09:00:00.000000', 1, 'qrqrrqr', '0', 3),
-(11, '2024-02-21', '09:00:00.000000', 1, 'wrfwefe', '0', 3),
-(12, '2024-02-21', '09:00:00.000000', 1, 'qrqrrqr', '0', 3),
-(13, '2024-02-21', '09:00:00.000000', 5, 'qrqrrqr', '0', 3),
-(14, '2024-02-21', '09:00:00.000000', 15, 'qrqrrqr', '0', 3),
-(15, '2024-02-21', '09:00:00.000000', 15, 'qrqrrqr', '0', 3),
-(16, '2024-02-21', '09:00:00.000000', 15, 'qrqrrqr', '0', 3);
+(7, '2023-12-19', '15:00:00.000000', 1, 'aaa', '0', 2);
 
 -- --------------------------------------------------------
 
@@ -85,23 +81,46 @@ CREATE TABLE `chat` (
 --
 
 INSERT INTO `chat` (`id`, `pengirim`, `penerima`, `chat`, `file`, `chatTime`) VALUES
-(235, 'admin@mail.com', 'customer@gmail.com', 'drth', '', '2024-02-21 06:36:25'),
-(233, 'customer@gmail.com', 'admin@mail.com', 'halo kask mau nanya', '', '2024-02-21 06:34:24'),
-(231, 'admin@mail.com', 'customer@gmail.com', 'yes?', '', '2024-02-21 05:31:31'),
-(234, 'customer@gmail.com', 'admin@mail.com', 'halo kask mau nanyaoooo', '', '2024-02-21 06:35:56'),
-(229, 'customer@gmail.com', 'admin@mail.com', 'halo', '', '2024-02-21 05:31:10');
+(269, 'customer@gmail.com', 'admin@mail.com', '', '', '2024-06-19 10:26:40'),
+(268, 'customer@gmail.com', 'admin@mail.com', 'halo', '', '2024-06-19 10:24:37'),
+(256, 'customer@gmail.com', 'admin@mail.com', 'halo kakk', '', '2024-06-19 10:17:34'),
+(257, 'customer@gmail.com', 'admin@mail.com', 'halo kakk', '', '2024-06-19 10:17:35'),
+(258, 'customer@gmail.com', 'admin@mail.com', 'halo kakk', '', '2024-06-19 10:17:35'),
+(259, 'customer@gmail.com', 'admin@mail.com', 'halo kakk', '', '2024-06-19 10:17:35'),
+(260, 'customer@gmail.com', 'admin@mail.com', 'halo kakk', '', '2024-06-19 10:17:36'),
+(261, 'customer@gmail.com', 'admin@mail.com', 'halo kakk', '', '2024-06-19 10:17:36'),
+(262, 'customer@gmail.com', 'admin@mail.com', 'halo kakk', '', '2024-06-19 10:17:36'),
+(263, 'customer@gmail.com', 'admin@mail.com', 'halo kakk', '', '2024-06-19 10:17:36'),
+(264, 'customer@gmail.com', 'admin@mail.com', '', '', '2024-06-19 10:17:55'),
+(265, 'admin@mail.com', 'customer@gmail.com', 'ya halo', '', '2024-06-19 10:18:10'),
+(266, 'customer@gmail.com', 'admin@mail.com', 'halo', '', '2024-06-19 10:18:15'),
+(267, 'admin@mail.com', 'customer@gmail.com', 'halo customer', '', '2024-06-19 10:18:22');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto`
+-- Table structure for table `fotoDetail`
 --
 
-CREATE TABLE `foto` (
+CREATE TABLE `fotoDetail` (
+  `idFotoDetail` int(255) NOT NULL,
   `idFoto` int(255) NOT NULL,
-  `idKategoriFoto` int(255) NOT NULL,
-  `urlFoto` varchar(255) NOT NULL
+  `urlGambar` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `fotoDetail`
+--
+
+INSERT INTO `fotoDetail` (`idFotoDetail`, `idFoto`, `urlGambar`) VALUES
+(10, 2, 'image/port2.jpg'),
+(11, 2, 'image/port3.jpg'),
+(12, 2, 'image/port4.jpg'),
+(13, 3, 'image/port8.jpg'),
+(14, 5, 'image/port7.jpg'),
+(15, 5, 'image/port6.jpg'),
+(16, 5, 'image/port1.jpg'),
+(18, 5, 'image/dgdrgd.jpg');
 
 -- --------------------------------------------------------
 
@@ -122,7 +141,7 @@ CREATE TABLE `jasa` (
 INSERT INTO `jasa` (`idJasa`, `namaJasa`, `status`) VALUES
 (1, 'as', 2),
 (2, 'Best Friend', 2),
-(3, 'Self Studio', 1),
+(3, 'Self Studio 1', 1),
 (4, 'Wedding', 1),
 (5, 'Graduation', 1),
 (6, 'Product', 1);
@@ -137,6 +156,16 @@ CREATE TABLE `kategorifoto` (
   `idKategoriFoto` int(255) NOT NULL,
   `namaKategori` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kategorifoto`
+--
+
+INSERT INTO `kategorifoto` (`idKategoriFoto`, `namaKategori`) VALUES
+(2, 'SELF STUDIO'),
+(3, 'WEDDING'),
+(4, 'PRODUCT'),
+(5, 'GRADUATION');
 
 -- --------------------------------------------------------
 
@@ -244,7 +273,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `inputFirstName`, `inputLastName`, `email`, `password`, `passwordConfirm`, `STATUS`) VALUES
 (13, 'customer', 'c', 'customer@gmail.com', '$2y$10$EqtKiQSDdlG.RhlYM2u/c..DtbC7GroadIikvVuf46z2cZd.7IpXm', '', 'customer'),
-(14, 'admin', 'admin', 'admin@mail.com', '$2y$10$xKGRrpy1MPPfc2TEC2jHXOaN5d3MjGDd5tbgrN89NNKdnNXjyGrUO', '$2y$10$xcpchk2okWsv7yAHsBZt/.GMglEgsXIJ2iu0ICGr3a5gHmJLxv0dy', '');
+(14, 'admin', 'admin', 'admin@mail.com', '$2y$10$xKGRrpy1MPPfc2TEC2jHXOaN5d3MjGDd5tbgrN89NNKdnNXjyGrUO', '$2y$10$xcpchk2okWsv7yAHsBZt/.GMglEgsXIJ2iu0ICGr3a5gHmJLxv0dy', ''),
+(15, 'Fernando', 'Wilim', 'xtrac8996@gmail.com', '$2y$10$pq0Y9BhJBsUoWh0U15dYVu6OciuC6sZ8HRQIAhc2ykOFge8RAEkhS', '', 'customer'),
+(16, 'fernando', 'wilim123', 'fernandowilim123@mail.com', '$2y$10$rOsU24ccllfdXfykIIYJSOiRVRs4iVT4IW7M7hAv8VrG3SoBxYouy', '', 'customer'),
+(17, 'a', 'a', 'a@gmail.com', '$2y$10$IgxwE8HxkXs1dj0ttkjVQuiy.YV8otEk/8StaMvzwXSbW7KwjZkBu', '', 'customer'),
+(18, 'admin', 'admin', 'aristo@admin.com', '$2y$10$xKGRrpy1MPPfc2TEC2jHXOaN5d3MjGDd5tbgrN89NNKdnNXjyGrUO', '$2y$10$xcpchk2okWsv7yAHsBZt/.GMglEgsXIJ2iu0ICGr3a5gHmJLxv0dy', '');
 
 --
 -- Indexes for dumped tables
@@ -269,10 +302,10 @@ ALTER TABLE `chat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `foto`
+-- Indexes for table `fotoDetail`
 --
-ALTER TABLE `foto`
-  ADD PRIMARY KEY (`idFoto`);
+ALTER TABLE `fotoDetail`
+  ADD PRIMARY KEY (`idFotoDetail`);
 
 --
 -- Indexes for table `jasa`
@@ -342,19 +375,19 @@ ALTER TABLE `akun`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `idBooking` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idBooking` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(23) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=236;
+  MODIFY `id` int(23) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=270;
 
 --
--- AUTO_INCREMENT for table `foto`
+-- AUTO_INCREMENT for table `fotoDetail`
 --
-ALTER TABLE `foto`
-  MODIFY `idFoto` int(255) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `fotoDetail`
+  MODIFY `idFotoDetail` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `jasa`
@@ -366,13 +399,13 @@ ALTER TABLE `jasa`
 -- AUTO_INCREMENT for table `kategorifoto`
 --
 ALTER TABLE `kategorifoto`
-  MODIFY `idKategoriFoto` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `idKategoriFoto` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
