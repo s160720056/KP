@@ -1,0 +1,23 @@
+<?php
+
+session_start();
+include 'koneksi.php';
+$keyword = $_POST['keyword'];
+$username = $_SESSION['user'];
+$output = array();
+$var = array();   
+$sql = "SELECT * FROM users WHERE (inputFirstName LIKE '%$keyword%' OR inputLastName LIKE '%$keyword%') AND email != '$username' GROUP BY email";
+$query = mysqli_query($conn, $sql);
+
+while ( $data = mysqli_fetch_array($query) ){
+    $var['username'] = $username;
+    $var['namaLengkap'] = $data['inputFirstName'].' '.$data['inputLastName'].'<br><small>'.$data['email'].'</small>';
+    $var['temanObrolan'] = $data['email'];
+  
+
+    array_push($output, $var);
+}
+
+echo json_encode($output);
+
+?>
