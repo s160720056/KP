@@ -15,6 +15,7 @@ if(isset($_POST['submitLogin'])){
                 header("location:index.php");
                 //create sessiion
                 $_SESSION['idUser']=$row['id'];
+                $_SESSION['user']=$row['email'];
             } else {
                 header("location:login.php?status=error");
             }
@@ -26,6 +27,7 @@ if(isset($_POST['submitLogin'])){
 else if(isset($_POST['register'])){
     $inputFirstName = $_POST['inputFirstName'];
     $inputLastName = $_POST['inputLastName'];
+    $namaLengkap=$inputFirstName." ".$inputLastName;
     $inputEmail = $_POST['inputEmail'];
     $noHP = $_POST['noHP'];
     $inputPassword = $_POST['inputPassword'];
@@ -49,6 +51,7 @@ else if(isset($_POST['register'])){
         $result = $conn->query($sql);
         if($result){
             echo "Data inserted successfully";
+
             header("location:register.php?status=success");
         }else{
             echo "Data not inserted";
@@ -60,6 +63,14 @@ else if(isset($_POST['register'])){
         header("location:register.php?status=error");
     }    
     
+}
+else if(isset($_POST['kirimChat'])){
+   if(isset($_SESSION['user'])){
+   }
+   else{
+    echo "<script>alert('Anda harus login terlebih dahulu')</script>";
+    header("location:login.php");
+   }
 }
 else{
     header("location:index.php");

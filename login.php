@@ -15,7 +15,7 @@ if(isset($_GET['status'])){
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-primary">
+    <body >
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -39,7 +39,7 @@ if(isset($_GET['status'])){
                                                 <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="password.html">Forgot Password?</a>
+                                                <!-- <a class="small" href="password.html">Forgot Password?</a> -->
                                                 <input type="submit" name="submitLogin" class="btn btn-primary" value="Login">
                                             </div>
                                         </form>

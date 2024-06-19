@@ -414,7 +414,7 @@ session_start();
 			<div class="container">
 				<div class="title-section">
 					<p>PRICING TABLE</p>
-					<h3>Your plance, your choise</h3>
+					<h3>Your Plan, Your Choice</h3>
 					<br>
 					<img src="images/price.jpeg" alt="" width="100%">
 					
@@ -483,11 +483,25 @@ $encryption = openssl_encrypt($current_date, $ciphering, $encryption_key, $optio
         </div>
         <div class="chat-form" style="display: none;">
             <!-- Chat form -->
-            <form id="chatForm" method="post" action="chat.php">
-                <input type="text" placeholder="Nama" name="nama">
-                <textarea placeholder="Pesan" name="pesan"></textarea>
-                <button type="submit" id="submitChatForm" name="kirim">Kirim</button>
-            </form>
+			<?php
+	if(isset($_SESSION['user'])){
+		echo "<form id='chatForm' method='post' action='chat/pages/chat.html'>
+				<input type='text' placeholder='Nama' name='nama' value='".$_SESSION['user']."'>
+				<textarea placeholder='Pesan' name='pesan'></textarea>
+				<button type='submit' id='submitChatForm' name='kirimChat'>Kirim</button>
+			</form>";
+	}
+	else{
+		echo "<form id='chatForm' method='post' action='action.php'>
+				<input type='text' placeholder='Nama' name='nama'>
+				<textarea placeholder='Pesan' name='pesan'></textarea>
+				<button type='submit' id='submitChatForm' name='kirimChat'>Kirim</button>
+			</form>";
+	
+	}
+
+?>
+        
         </div>
     </div>
 
