@@ -15,6 +15,12 @@ if(isset($_GET['status'])){
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
+    <style>
+         body {
+            background-color: #604CAB;
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
     <body >
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
@@ -23,7 +29,10 @@ if(isset($_GET['status'])){
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                    <div class="card-header">
+                                    <p><a href="index.php"> < </a> </p>
+                                    <img src="images/logof.png" alt="Logo" width="100%">
+                                        <h3 class="text-center font-weight-light my-4">Login</h3></div>
                                     <div class="card-body">
                                         <form method="post" action="action.php">
                                             <div class="form-floating mb-3">

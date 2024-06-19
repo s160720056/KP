@@ -77,6 +77,10 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link color-white" href="jasa.php">Daftar Jasa</a>
                             </nav>
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link color-white" href="foto.php">Daftar Foto Portfolio</a>
+                            </nav>
+
                         </div>
                         <a class="nav-link collapsed color-white" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
