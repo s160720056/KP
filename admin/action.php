@@ -30,9 +30,14 @@ else if(isset($_POST['login'])){
     if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_assoc($result)){
             if(password_verify($password, $row['password'])){
+                if($row['STATUS']!='customer'){
+                 
                 echo "Login successful";
                 $_SESSION['user'] = $email;
                 echo "<script>alert('Login successful');window.location.href='index.php';</script>";
+                }else{
+                    echo "<script>alert('Wrong Email or Password');window.location.href='login.php';</script>";
+                }
             }else{
                 echo $row['password'];
                 echo "Password incorrect";
