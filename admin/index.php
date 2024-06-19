@@ -19,9 +19,13 @@
         }
 
         .rounded-corner {
-    border-radius: 15px; /* Sesuaikan nilai untuk mengatur seberapa bulat sudutnya */
+    border-radius: 25px; /* Sesuaikan nilai untuk mengatur seberapa bulat sudutnya */
+    border-bottom-left-radius: 0px; /* Sesuaikan nilai untuk mengatur seberapa bulat sudutnya */
+    border-bottom-right-radius: 0px; /* Sesuaikan nilai untuk mengatur seberapa bulat sudutnya */
     overflow: hidden; /* Opsional: untuk memastikan konten di dalam div juga mengikuti sudut bulat */
 }
+
+
     </style>
 </head>
 <body class="sb-nav-fixed">
@@ -107,7 +111,8 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4 rounded-corner" >
+                <div style="background-color:#604CAB;">
+                <div class="container-fluid px-4 rounded-corner" style="background-color:white;">
                     <?php
                     if (isset($isi)) {
                         echo $isi;
@@ -177,6 +182,7 @@
                         echo $isi;
                     }
                     ?>
+                </div>
                 </div>
             </main>
         </div>
