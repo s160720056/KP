@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Message Chat Box - Bootsnipp.com</title>
+  <title>Message Chat Box</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="../assets/css/chat.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
@@ -14,16 +14,18 @@
   
 </head>
 
-<body onload="inisiasi()">
+<body onload="inisiasi()" style="background-color: #604CAB;">
   <!--Navbar -->
-  <nav class="mb-1 navbar navbar-expand-lg navbar-dark ">
-    <a class="navbar-brand" href="#"><b>KULIAH koding | </b> shadiq al mughni</a>
+  <!-- <nav class="mb-1 navbar navbar-expand-lg navbar-dark ">
+    <img src="../images/logof.png" alt="" width="100%">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
       aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="navbar-nav mr-auto">
+        
+   
       </ul>
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <div id="navigasi">
@@ -42,12 +44,12 @@
         </div>
       </ul>
     </div>
-  </nav>
+  </nav> -->
   <!--/.Navbar -->
 
 
 
-  <div class="container">
+  <div class="container" style="width: 50%;margin-top: 10%;">
     <br>
     <div class="messaging">
       <div class="inbox_msg">
@@ -72,19 +74,20 @@
           </div>
         </div>
         <div class="mesgs">
-          <div class="msg_history">
+          <div class="msg_history" style="background-image: url('../images/logof.png'); background-color: white;">
             <div id="historiObrolan">
             </div>
             
-            <div id="formKirimPesan">
-              <div class="type_msg">
-                <div class="input_msg_write">
-                  <input type="text" class="write_msg" id="pesan" onkeydown="listen()" placeholder="Ketikkan sebuah pesan" />
-                  
-                </div>
-              </div>
-            </div>
+           
 
+          </div>
+        </div>
+        <div id="formKirimPesan">
+          <div class="type_msg">
+            <div class="input_msg_write">
+              <input type="text" class="write_msg" id="pesan" onkeydown="listen()" placeholder="Ketikkan sebuah pesan" />
+              
+            </div>
           </div>
         </div>
       </div>
@@ -96,28 +99,28 @@
 
 
   <!-- Modal tambah teman-->
-  <div class="modal fade" id="tambahTeman" tabindex="-1" role="dialog" aria-labelledby="tambahTeman" aria-hidden="true">
+  <!-- <div class="modal fade" id="tambahTeman" tabindex="-1" role="dialog" aria-labelledby="tambahTeman" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-notify modal-info" role="document">
-      <!--Content-->
+     
       <div class="modal-content">
-        <!--Header-->
+      
         <div class="modal-header">
           <p class="heading lead">Tambah Teman</p>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true" class="white-text">&times;</span>
           </button>
         </div>
-        <!--Body-->
+    
         <div class="modal-body">
         </div>
-        <!--Footer-->
+       
         <div class="modal-footer">
         </div>
       </div>
-      <!--/.Content-->
+
     </div>
-  </div>
-  <!-- Modal tambah teman-->
+  </div> -->
+
 
 
 <!-- JQuery -->
