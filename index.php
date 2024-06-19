@@ -1,4 +1,7 @@
 <?php
+include 'config.php';
+$conn = connectToDatabase();
+
 session_start();
 ?>
 <!DOCTYPE html>
@@ -203,6 +206,7 @@ session_start();
 		<!-- end about -->
 		
 <!-- portfolio -->
+
 		<div class="portfolio section mb-4" id="portfolio">
 			<div class="container">
 				<div class="title-section">
@@ -213,10 +217,47 @@ session_start();
 				<div class="box-content">
 					<div class="portfolio-filter-menu">
 						<ul>
-							<li data-filter="all" class="active">
+							<?php
+
+$sql="SELECT * FROM kategorifoto";
+$result=$conn->query($sql);
+echo "<li data-filter='all' class='active'>
+								<span>Show All</span>
+							</li>";
+while($row=$result->fetch_assoc()){
+	echo "<li data-filter='".$row['idKategoriFoto']."'>
+								<span>".$row['namaKategori']."</span>
+							</li>";
+}
+
+$sql="SELECT * FROM fotoDetail INNER JOIN kategorifoto ON fotoDetail.idFoto=kategorifoto.idKategoriFoto";
+$result=$conn->query($sql);
+echo"	<div class='row no-gutters filter-container mb-4'>";
+while($row=$result->fetch_assoc()){
+	echo "<div class='col-md-4 col-sm-6 col-xs-12 filter-item' data-category='".$row['idFoto']."'>
+							<div class='content-image'>
+								<a href='admin/".$row['urlGambar']."' class='portfolio-popup'>
+									<img src='admin/".$row['urlGambar']."' alt=''>
+									<div class='image-overlay'></div>
+									<div class='portfolio-caption'>
+										<div class='title'>
+											<h4>".$row['namaKategori']."</h4>
+											<span>Graphic Design</span>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>";
+}
+echo "</div>";
+
+
+
+?>
+							<!-- <li data-filter="all">
 								<span>Show All</span>
 							</li>
-							<li data-filter="1">
+							<li data-filter="1"  class="active">
 								<span>Self Studio</span>
 							</li>
 							<li data-filter="2">
@@ -227,10 +268,10 @@ session_start();
 							</li>
 							<li data-filter="4">
 								<span>Graduation</span>
-							</li>
+							</li> -->
 						</ul>
 					</div>
-					<div class="row no-gutters filter-container mb-4">
+					<!-- <div class="row no-gutters filter-container mb-4">
 						<div class="col-md-4 col-sm-6 col-xs-12 filter-item" data-category="1,4">
 							<div class="content-image">
 								<a href="images/port1.jpg" class="portfolio-popup">
@@ -343,7 +384,7 @@ session_start();
 								</a>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -668,6 +709,23 @@ $encryption = openssl_encrypt($current_date, $ciphering, $encryption_key, $optio
 		<script src="js/magnific-popup.min.js"></script>
 		<script src="js/contact-form.js"></script>
 		<script src="js/main.js"></script>
+		<script>
+			$(document).ready(function() {
+    $('.portfolio-filter-menu ul li').click(function() {
+        $('.portfolio-filter-menu ul li').removeClass('active');
+        $(this).addClass('active');
+
+        var selector = $(this).attr('data-filter');
+        $('.filter-item').hide();
+        if(selector == 'all') {
+            $('.filter-item').show();
+        } else {
+            $('.filter-item[data-category*="'+selector+'"]').show();
+        }
+    });
+});
+
+		</script>
 
 
 

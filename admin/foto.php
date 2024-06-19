@@ -33,27 +33,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET['idDell'])) {
+       //delete kategorifoto where idKategoriFoto = idDell
+       //and delete fotoDetail where idFoto = idDell
         $idKategoriFoto = $_GET['idDell'];
+        $sql = "DELETE FROM kategorifoto WHERE idKategoriFoto = ?";
+        $hasil = $conn->prepare($sql);
+        $hasil->bind_param("i", $idKategoriFoto);
+        $hasil->execute();
 
-        $sqlCheck = "SELECT * FROM jasa WHERE idKategoriFoto = ?";
-        $stmtCheck = $conn->prepare($sqlCheck);
-        $stmtCheck->bind_param("i", $idKategoriFoto);
-        $stmtCheck->execute();
-        $resultCheck = $stmtCheck->get_result();
-
-        if ($resultCheck->num_rows > 0) {
-            // Jasas are associated with this category, cannot delete
-            $sqlDelete = "UPDATE kategorifoto SET status = 2 WHERE idKategoriFoto = ?";
-            $stmtDelete = $conn->prepare($sqlDelete);
-            $stmtDelete->bind_param("i", $idKategoriFoto);
-            $stmtDelete->execute();
-        } else {
-            // No associated Jasas, safe to delete the category
-            $sqlDelete = "UPDATE kategorifoto SET status = 2 WHERE idKategoriFoto = ?";
-            $stmtDelete = $conn->prepare($sqlDelete);
-            $stmtDelete->bind_param("i", $idKategoriFoto);
-            $stmtDelete->execute();
-        }
+        $sql = "DELETE FROM fotoDetail WHERE idFoto = ?";
+        $hasil = $conn->prepare($sql);
+        $hasil->bind_param("i", $idKategoriFoto);
+        $hasil->execute();
+        
         
         // Redirect to prevent form resubmission
         header("Location: " . $_SERVER['PHP_SELF']);
