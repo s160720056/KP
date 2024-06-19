@@ -211,7 +211,7 @@ session_start();
 			<div class="container">
 				<div class="title-section">
 					<p>PORTFOLIO</p>
-					<h3>COMMING <span>SOON</span></h3>
+					<h3>COMING <span>SOON</span></h3>
 					
 				</div>
 				<div class="box-content">
