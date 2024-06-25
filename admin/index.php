@@ -1,3 +1,16 @@
+<?php 
+session_start();
+if(isset(   $_SESSION['user'])){
+    
+}
+else{
+    header('Location: login.php');
+}
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,6 +92,9 @@
                             </nav>
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link color-white" href="foto.php">Daftar Foto Portfolio</a>
+                            </nav>
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link color-white" href="pricing.php">Daftar Pricing</a>
                             </nav>
 
                         </div>

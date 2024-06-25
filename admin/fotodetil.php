@@ -160,7 +160,7 @@ if (isset($_GET['idEdit'])) {
                 <input type='file' class='form-control' id='namaKategori' name='namaKategori' required>
                 <input type='hidden' name='idDetail' value='".$id."'>
             </div>
-            <button type='submit' name='add' class='btn btn-primary'>Tambah Kategori</button>
+            <button type='submit' name='add' class='btn btn-primary'>Tambah Gambar</button>
         </form>
     </div>
     <div class='card-body'>

@@ -333,12 +333,17 @@ p {
 .title-section {
     text-align: center;
     margin-bottom: 50px;
+
+ 
+
 }
 
 .title-section p {
     color: #614cab;
     margin-bottom: 15px;
     display: block;
+  
+  
 }
 
 .title-section h3 {

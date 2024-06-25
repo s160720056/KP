@@ -34,7 +34,7 @@ session_start();
 
 		.chat-form {
 		    display: none;
-		    position: fixed;
+		    position : fixed;
 		    right: 10px;
 		    bottom: 80px;
 		    width: 300px;
@@ -105,11 +105,6 @@ session_start();
 							<a class='nav-link'href='login.php'  class='button2'>Login</a>
 						</li>";
 						}
-
-
-
-
-
 ?>
 
 						<li class="nav-item">
@@ -117,7 +112,11 @@ session_start();
 						</li>
 						<?php 
 						if(isset($_SESSION['idUser'])){
-							echo "<li class='nav-item'>
+							echo "
+							<li class='nav-item'>
+							<a class='nav-link'href='historiBookign.php' class='button2'>History Booking</a>
+						</li>
+							<li class='nav-item'>
 							<a class='nav-link'href='logout.php' class='button2'>Logout</a>
 						</li>";
 
@@ -209,9 +208,9 @@ session_start();
 
 		<div class="portfolio section mb-4" id="portfolio">
 			<div class="container">
-				<div class="title-section">
-					<p>PORTFOLIO</p>
-					<h3>COMING <span>SOON</span></h3>
+				<div class="title-section"  style="font-size:25px">
+					<p >PORTFOLIO</p>
+					<!-- <h3>COMING <span>SOON</span></h3> -->
 					
 				</div>
 				<div class="box-content">
@@ -393,7 +392,7 @@ echo "</div>";
 		<!-- services -->
 		<div class="services section bg-grey mt-4" id="services">
 			<div class="container">
-				<div class="title-section">
+				<div class="title-section"   style="font-size:25px">
 					<p>SERVICES</p>
 					<h3>Choose what</h3>
 					<h3>you like our services</h3>
@@ -453,7 +452,7 @@ echo "</div>";
 		<!-- pricing -->
 		<div class="pricing section" id="pricing">
 			<div class="container">
-				<div class="title-section">
+				<div class="title-section"   style="font-size:25px">
 					<p>PRICING TABLE</p>
 					<h3>Your Plan, Your Choice</h3>
 					<br>
