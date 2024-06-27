@@ -91,9 +91,10 @@ $isi .= "
                                            <th>Time</th>
                                            <th>Duration</th>
                                            <th>Nama Booking</th>
-                                           <th>Team</th>
+                                          
                                            <th>Appointment type</th>
                                            <th>Status</th>
+                                           <th>Action</th>
                                          
                                        </tr>
                                    </thead>
@@ -103,7 +104,7 @@ $isi .= "
                                              <th>Time</th>
                                              <th>Duration</th>
                                              <th>Nama Booking</th>
-                                             <th>Team</th>
+                                             
                                              <th>Appointment type</th>
                                              <th>Status</th>
                                        </tr>
@@ -124,9 +125,19 @@ $isi .= "
                                                 <td>" . $waktuBooking . " </td>
                                                 <td>" . $row['durasiBooking'] . " Jam </td>
                                                 <td>" . $row['namaBooking'] . "</td>
-                                                <td></td>
+                                              
                                                 <td>" . $row['namaJasa'] . "</td>
-                                                <td>" . $row['statusBooking'] . "</td>
+                                                <td>";
+                                                if ($row['statusBooking']==0){
+                                                    $isi .= "<span class='badge bg-warning'>Pending</span>";
+                                                }
+                                                else if ($row['statusBooking']==1){
+                                                    $isi .= "<span class='badge bg-success'>Approved</span>";
+                                                }
+                                                else if ($row['statusBooking']==2){
+                                                    $isi .= "<span class='badge bg-danger'>Canceled</span>";
+                                                }
+                                                 $isi.="</td>
                                                 <td>
                                                     <a href='actionBooking.php?idEdit=" . $row['idBooking'] . "' class='btn btn-primary'>Edit</a>
                                                     <a onclick='hapus(" . $row['idBooking'] . ")' class='btn btn-danger'>Delete</a>

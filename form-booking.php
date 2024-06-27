@@ -3,6 +3,14 @@ session_start();
 include 'config.php';
 $conn = connectToDatabase(); 
 if(isset($_SESSION['idUser'])){
+    //get data user
+    $sql="SELECT * from users where id=".$_SESSION['idUser'];
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $idUser=$row['id'];
+    $name=$row['inputFirstName']." ".$row['inputLastName'];
+    $email=$row['email'];
+
 
 }   
 else{
@@ -129,7 +137,7 @@ else{
                                 <div class="col">
                                     <div id="first-name-field">
 
-                                        <input type="text" placeholder="Nama Lengkap" name="name" required>
+                                        <input type="text" placeholder="Nama Lengkap" name="name" required value="<?php echo $name; ?>">
                                     </div>
                                 </div>
 
@@ -146,7 +154,8 @@ else{
                             <div class="row">
                                 <div class="col">
                                     <div id="email-field">
-                                        <input type="email" placeholder="Email" name="email" required>
+                                        <input type="email" placeholder="Email" name="email" required value="<?php echo $email; ?>" readonly>
+                                        <input type="hidden" name="idUser" value="<?php echo $idUser; ?>">
                                     </div>
                                 </div>
                             </div>

@@ -1,11 +1,14 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 include 'config.php';
 $conn = connectToDatabase();
 $eror="";
 // Get the 'idDetail' from either GET or POST request
 $id = isset($_GET['idDetail']) ? $_GET['idDetail'] : (isset($_POST['idDetail']) ? $_POST['idDetail'] : 0);
 
-// Fetch fotoDetail data
+// Fetch fotoDetail data 
 $sql = "SELECT * FROM fotoDetail WHERE idFoto = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id);
@@ -61,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // exit();
     } else if (isset($_POST['add'])) {
         $namaKategori = $_POST['namaKategori'];
-        $target_dir = "image/";
+        $target_dir = "image/portfolio/";
         $target_file = $target_dir . basename($_FILES["namaKategori"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
