@@ -125,7 +125,9 @@ if (isset($_GET['idEdit'])) {
         </div>
     </div>
     <div class='card-body'>
-    <p>".$_GET['error']."</p>
+    <p>";
+    echo isset($_GET['error']) ? $_GET['error'] : "";
+    $isi.="</p>
         <form method='POST' action='" . htmlspecialchars($_SERVER["PHP_SELF"]) . "' enctype='multipart/form-data'>
             <div class='mb-3'>
                 <label for='namaPricing' class='form-label'>Upload Gambar</label>

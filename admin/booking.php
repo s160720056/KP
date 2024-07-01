@@ -3,7 +3,7 @@ $bulanFilter = $tahunFilter = "";
 
 include 'config.php';
 $conn = connectToDatabase();
-$sql = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa order by b.tanggalBooking desc , b.waktuBooking desc ";
+$sql = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa inner join users u on u.id=b.idUser order by b.tanggalBooking desc , b.waktuBooking desc ";
 $result = $conn->query($sql);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['findFilter'])) {
@@ -69,12 +69,12 @@ $isi .= "
     </select>
 </div>
   <button type='submit' name='findFilter' class='btn btn-primary' id='filterButton'>Cari</button>
-  </form>
+  </form>";
 
+//   </div>
+//   <div class='card mb-4' style='margin-top:10%'>
 
-
-</div>
-<div class='card mb-4' style='margin-top:10%'>
+$isi.="
 
                             <div class='card-header' >
                                     <div class='d-flex justify-content-between align-items-center'>
@@ -87,10 +87,10 @@ $isi .= "
                                 <table id='datatablesSimple' class='table table-bordered mx-auto'>
                                    <thead>
                                        <tr>
-                                           <th>Date</th>
-                                           <th>Time</th>
-                                           <th>Duration</th>
-                                           <th>Nama Booking</th>
+                                           <th>Tanggal</th>
+                                           <th>Jam</th>
+                                           <th>Durasi</th>
+                                           <th>Atas Nama</th>
                                           
                                            <th>Appointment type</th>
                                            <th>Status</th>
@@ -124,7 +124,7 @@ $isi .= "
                                                 <td>" . $dmyFormat . "</td>
                                                 <td>" . $waktuBooking . " </td>
                                                 <td>" . $row['durasiBooking'] . " Jam </td>
-                                                <td>" . $row['namaBooking'] . "</td>
+                                                <td>" . $row['inputFirstName']." ". $row['inputLastName'] ."  |  <b>".$row['email'] . "</b></td>
                                               
                                                 <td>" . $row['namaJasa'] . "</td>
                                                 <td>";

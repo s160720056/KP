@@ -476,7 +476,7 @@ $encryption = openssl_encrypt($current_date, $ciphering, $encryption_key, $optio
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item active" >
                         <span><i class="lni lni-quotation"></i></span>
                         <p>Sometimes life doesn't always go the way you want, but you have to keep trying.</p>
                         <h5>Michael Jordan</h5>
@@ -531,9 +531,10 @@ $encryption = openssl_encrypt($current_date, $ciphering, $encryption_key, $optio
                     <div class="content">
                         <h5>Support</h5>
                         <ul>
-                            <li><a href=""><i class="originfamousid@gmail.com"></i> originfamousid@gmail.com</a></li>
-                            <li><a href=""><i class="https://api.whatsapp.com/send?phone=6285157774134&text="><i
-                                            class="fab fa-instagram"></i> +62-8511-3094-134</a></li>
+                            <li>
+                            <a href="mailto:originfamousid@gmail.com"><i class="far fa-envelope"></i>originfamousid@gmail.com</a></li>
+                            <li><a href="https://api.whatsapp.com/send?phone=6285157774134&text="><i class="https://api.whatsapp.com/send?phone=6285157774134&text="><i
+                                            class="fab fa-whatsapp"></i> +62-8511-3094-134</a></li>
                         </ul>
                     </div>
                 </div>
