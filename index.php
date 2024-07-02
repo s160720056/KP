@@ -77,55 +77,15 @@ session_start();
     <!-- navbar -->
     <nav class="navbar navbar-expand-md fixed-top">
         <div class="container">
-            <a href="index.html" class="navbar-brand"><img src="images/logof.png" alt="" width="100%"></a>
+            <a href="index.php" class="navbar-brand"><img src="images/logof.png" alt="" width="100%"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#portfolio">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#pricing">Pricing</a>
-                    </li>
-                    <?php
-						if(isset($_SESSION['idUser'])){
-
-						}
-						else{
-							echo "<li class='nav-item'>
-							<a class='nav-link'href='login.php'  class='button2'>Login</a>
-						</li>";
-						}
+                <?php
+include 'navbar.php'
 ?>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="form-booking.php" class="button2">Booking</a>
-                    </li>
-                    <?php 
-						if(isset($_SESSION['idUser'])){
-							echo "
-							<li class='nav-item'>
-							<a class='nav-link'href='historiBookign.php' class='button2'>History Booking</a>
-						</li>
-							<li class='nav-item'>
-							<a class='nav-link'href='logout.php' class='button2'>Logout</a>
-						</li>";
-
-						}
-						?>
-                </ul>
             </div>
         </div>
     </nav>
@@ -156,55 +116,117 @@ session_start();
     <!-- end end intro -->
 
     <!-- about -->
-    <!-- <div class="about section bg-grey" id="about">
-			<div class="container">
-				<div class="title-section">
-					<p>ABOUT US</p>
-					<h3>Famous Studio</h3>
-				</div>
-				<div class="row text-center">
-					<div class="col-2"></div>
-					<div class="col-8">
-						<p>Photo place with the newest and most popular Self Photo, Product Photo, Graduation and Prewedding facilities in Surabaya. Surabaya Photo Studio with a monochrome concept and has its own characteristics compared to other studios in Surabaya."</p>
-					</div>
-					<div class="col-2"></div>
-				</div>
-				<div class="row">
-					<div class="col-md-4">
-						<div class="content">
-							<i class="lni lni-bulb"></i>
-							<h5>Self Studio</h5>
-							<p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit Ea laudantium empore nobis quisquam.</p>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="content">
-							<i class="lni lni-sun"></i>
-							<h5>Wedding Photo</h5>
-							<p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit Ea laudantium empore nobis quisquam.</p>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="content">
-							<i class="lni lni-comments"></i>
-							<h5>Photo Product</h5>
-							<p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit Ea laudantium empore nobis quisquam.</p>
-						</div>
-					</div>
-				</div>
-				<div class="row mt-4">
-					<div class="col-md-4"></div>
-					<div class="col-md-4">
-						<div class="content">
-							<i class="lni lni-sun"></i>
-							<h5>Graduation Photo</h5>
-							<p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit Ea laudantium empore nobis quisquam.</p>
-						</div>
-					</div>
-					<div class="col-md-4"></div>
-				</div>
-			</div>
-		</div> -->
+    <div class="about section bg-grey" id="about">
+        <div class="container">
+            <div class="title-section">
+                <p>ABOUT US</p>
+                <h3>Famous Studio</h3>
+            </div>
+              <div class="row text-center">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <p>Photo place with the newest and most popular Self Photo, Product Photo, Graduation and Prewedding
+                        facilities in Surabaya. Surabaya Photo Studio with a monochrome concept and has its own
+                        characteristics compared to other studios in Surabaya."</p>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <?php
+$listIcon = [
+    'lni lni-bulb', 
+    'lni lni-sun', 
+    'lni lni-comments', 
+    'lni lni-heart', 
+    'lni lni-rocket', 
+    'lni lni-cloud', 
+    'lni lni-angle-double-right', 
+    'lni lni-cog', 
+    'lni lni-check-mark-circle', 
+    'lni lni-grid-alt', 
+    'lni lni-cloud-sync', 
+    'lni lni-leaf', 
+    'lni lni-alarm', 
+    'lni lni-basketball', 
+    'lni lni-book', 
+    'lni lni-bar-chart', 
+    'lni lni-camera', 
+    'lni lni-gift', 
+    'lni lni-laptop-phone', 
+    'lni lni-umbrella'
+];
+$sql = "SELECT * FROM jasa j WHERE j.status = 1";
+$result = $conn->query($sql);
+$isi = "";
+$itemCount = 0;
+
+while ($row = $result->fetch_assoc()) {
+    if ($itemCount % 4 == 0) {
+        // Start a new row after every 4 items
+        if ($itemCount > 0) {
+            $isi .= "</div>"; // Close the previous row if not the first one
+        }
+        $isi .= "<div class='row'>";
+    }
+
+    $isi .= "<div class='col-md-3'>
+                <div class='content'>
+                    <i class='" . $listIcon[rand(0, count($listIcon) - 1)] . "'></i>
+                    <h5>" . $row['namaJasa'] . "</h5>
+                </div>
+            </div>";
+
+    $itemCount++;
+}
+
+if ($itemCount > 0) {
+    $isi .= "</div>"; // Close the last row if there are items
+}
+
+echo $isi;
+?>
+
+
+          
+        <!--<div class="row">
+                <div class="col-md-4">
+                    <div class="content">
+                        <i class="lni lni-bulb"></i>
+                        <h5>Self Studio</h5>
+                        <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit Ea laudantium empore
+                            nobis quisquam.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="content">
+                        <i class="lni lni-sun"></i>
+                        <h5>Wedding Photo</h5>
+                        <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit Ea laudantium empore
+                            nobis quisquam.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="content">
+                        <i class="lni lni-comments"></i>
+                        <h5>Photo Product</h5>
+                        <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit Ea laudantium empore
+                            nobis quisquam.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="content">
+                        <i class="lni lni-sun"></i>
+                        <h5>Graduation Photo</h5>
+                        <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit Ea laudantium empore
+                            nobis quisquam.</p>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div> -->
+        </div>
+    </div>
     <!-- end about -->
 
     <!-- portfolio -->
@@ -476,7 +498,7 @@ $encryption = openssl_encrypt($current_date, $ciphering, $encryption_key, $optio
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active" >
+                    <div class="carousel-item active">
                         <span><i class="lni lni-quotation"></i></span>
                         <p>Sometimes life doesn't always go the way you want, but you have to keep trying.</p>
                         <h5>Michael Jordan</h5>
@@ -532,8 +554,11 @@ $encryption = openssl_encrypt($current_date, $ciphering, $encryption_key, $optio
                         <h5>Support</h5>
                         <ul>
                             <li>
-                            <a href="mailto:originfamousid@gmail.com"><i class="far fa-envelope"></i>originfamousid@gmail.com</a></li>
-                            <li><a href="https://api.whatsapp.com/send?phone=6285157774134&text="><i class="https://api.whatsapp.com/send?phone=6285157774134&text="><i
+                                <a href="mailto:originfamousid@gmail.com"><i
+                                        class="far fa-envelope"></i>originfamousid@gmail.com</a>
+                            </li>
+                            <li><a href="https://api.whatsapp.com/send?phone=6285157774134&text="><i
+                                        class="https://api.whatsapp.com/send?phone=6285157774134&text="><i
                                             class="fab fa-whatsapp"></i> +62-8511-3094-134</a></li>
                         </ul>
                     </div>

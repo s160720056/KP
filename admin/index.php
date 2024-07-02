@@ -158,7 +158,7 @@ else{
                         $currentDate = date("Y-m-d");
 
                         $conne = connectToDatabase();
-                        $sqli = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa where tanggalBooking='$currentDate' order by b.tanggalBooking desc , b.waktuBooking desc ";
+                        $sqli = "SELECT * from bookings b inner join jasa j on j.idJasa=b.idJasa where tanggalBooking='$currentDate' and statusBooking!='0' order by b.tanggalBooking desc , b.waktuBooking desc ";
                         $resulto = $conne->query($sqli);
                         $isi = "
                          
@@ -203,14 +203,23 @@ else{
                             $isi .= "<tr>
                                                 <td>" . $dmyFormat . "</td>
                                                 <td>" . $waktuBooking . " </td>
-                                                <td>" . $row['durasiBooking'] . " Jam </td>
+                                                <td>" . $row['durasiBooking'] . " Menit </td>
                                                 <td>" . $row['namaBooking'] . "</td>
                                                 <td></td>
                                                 <td>" . $row['namaJasa'] . "</td>
-                                                <td>" . $row['statusBooking'] . "</td>
+                                                <td>";
+                                                     
+            if ($row['statusBooking'] == 0) {
+                $isi .= "<span class='badge bg-warning'>Pending</span>";
+            } else if ($row['statusBooking'] == 1) {
+                $isi .= "<span class='badge bg-success'>Approved</span>";
+            } else if ($row['statusBooking'] == 2) {
+                $isi .= "<span class='badge bg-danger'>Canceled</span>";
+            }
+            $isi.="</td>
                                                 <td>
                                                     <a href='actionBooking.php?idEdit=" . $row['idBooking'] . "' class='btn btn-primary'>Edit</a>
-                                                    <a onclick='hapus(" . $row['idBooking'] . ")' class='btn btn-danger'>Delete</a>
+                                                    <a href='actionBooking.php?idDell=" . $row['idBooking'] . "' class='btn btn-danger'>Delete</a>
                                                 </td>
                                             </tr>";
                         }
@@ -265,6 +274,23 @@ else{
     }
     $hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
     $dates = get_week_dates();
+    function getWaktuBerakhir($waktuBooking, $durasiBooking) {
+        // Convert waktuBooking to a DateTime object
+        $waktuBookingDateTime = DateTime::createFromFormat('H:i', $waktuBooking);
+    
+        // If waktuBooking is not a valid time format, return an error
+        if (!$waktuBookingDateTime) {
+            return "Invalid waktuBooking format";
+        }
+    
+        // Add durasiBooking minutes to waktuBookingDateTime
+        $interval = new DateInterval('PT' . $durasiBooking . 'M');
+        $waktuBookingDateTime->add($interval);
+    
+        // Format the new time as H:i and return it
+        return $waktuBookingDateTime->format('H:i');
+    }
+
       for ($i = 0; $i < 7; $i++) {
         $targetDate=$dates[$i];
        
@@ -280,7 +306,7 @@ else{
               // Remove seconds from waktuBooking
               $namaBooking=$row['namaBooking'];
               $waktuBooking = substr($row['waktuBooking'], 0, 5);
-              $waktuBerakhir = date('H:i', strtotime($waktuBooking . ' + ' . $row['durasiBooking'] . ' hours'));
+              $waktuBerakhir = getWaktuBerakhir($waktuBooking, $row['durasiBooking']);
               $dateString = $row['tanggalBooking'];
               $dateTime = new DateTime($dateString);
               $dmyFormat = $dateTime->format("d-m-Y");

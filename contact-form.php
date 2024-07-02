@@ -1,25 +1,63 @@
 <?php
     session_start();
     include 'config.php';
-    $conn=connnectToDatabase();
+    $conn=connectToDatabase();
     if (isset($_POST['submit'])) {
         $idUser= $_SESSION['idUser'];
         $name = $_POST['name'];
         $phone = $_POST['phone'];
         $email = $_POST['email'];
         $wa = $_POST['wa'];
-        $service = $_POST['services'];
+        $service = $_POST['services'];//jasa
         $date=$_POST['date'];
         $time=$_POST['time'];
-        //echo all
-        echo $idUser . "<br>". $name . "<br>". $phone . "<br>". $email . "<br>". $wa . "<br>". $service . "<br>". $date . "<br>". $time . "<br>";
+        $durasi = $_POST['durasi'];
+
+//INSERT INTO `bookings`(`idBooking`, `tanggalBooking`, `waktuBooking`, `durasiBooking`, `namaBooking`, `statusBooking`, `idJasa`, `idUser`)
+// VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8])
+$sql = "INSERT INTO `bookings`(`tanggalBooking`, `waktuBooking`, `durasiBooking`, `namaBooking`, `statusBooking`, `idJasa`, `idUser`) 
+VALUES (?, ?, ?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($sql);
+      // Check if preparing the statement succeeded
+if ($stmt === false) {
+    die('Error preparing statement: ' . $conn->error);
+}
+
+// Assuming "0" is a default value for statusBooking; use 's' for string, 'd' for double, 'i' for integer
+$status = "0";
+$stmt->bind_param("ssdssii", $date, $time, $durasi, $name, $status, $service, $idUser);
+
+// Execute the statement
+$stmt->execute();
+
+// Check if execution succeeded
+if ($stmt->affected_rows > 0) {
+    echo "New record created successfully";
+    //echo all
+    echo "$idUser $name $phone $email $wa $service $date $time $durasi $status";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+// Close the statement and database connection
+$stmt->close();
+$conn->close();
 
 
 
 
 
-        // insert to bookings table(tanggalBooking,waktuBooking,durasiBooking,namaBooking="",statusBooking=0,idJasa,idUser)
-        // $sql = "INSERT INTO bookings (tanggalBooking,waktuBooking,durasiBooking,namaBooking,statusBooking,idJasa,idUser) VALUES ('$date','$time',1,'$name',0,$service,$idUser)";
+
+
+
+
+
+
+
+
+
+
+
 
 
 

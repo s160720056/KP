@@ -41,7 +41,7 @@ else{
 <header style="text-align: center;font-size:25px;padding-top: 150px;">Booking</header>
 <!-- <nav class="navbar navbar-expand-md fixed-top">
         <div class="container">
-            <a href="/index.html" class="navbar-brand"><img src="images/logo.png" alt=""></a>
+            <a href="/index.php" class="navbar-brand"><img src="images/logo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fa fa-bars"></i>
             </button>
@@ -49,51 +49,15 @@ else{
     </nav> -->
 <nav class="navbar navbar-expand-md fixed-top" style="background-color:#604CAB;">
     <div class="container">
-        <a href="index.html" class="navbar-brand"><img src="images/logof.png" alt="" width="100%"></a>
+        <a href="index.php" class="navbar-brand"><img src="images/logof.png" alt="" width="100%"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php#home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php#portfolio">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php#services">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php#pricing">Pricing</a>
-                </li>
-                <?php
-						if(isset($_SESSION['idUser'])){
-
-						}
-						else{
-							echo "<li class='nav-item'>
-							<a class='nav-link'href='login.php'  class='button2'>Login</a>
-						</li>";
-						}
+        <?php
+include 'navbar.php'
 ?>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="form-booking.php" class="button2">Booking</a>
-                </li>
-                <?php 
-						if(isset($_SESSION['idUser'])){
-							echo "<li class='nav-item'>
-							<a class='nav-link'href='logout.php' class='button2'>Logout</a>
-						</li>";
-
-						}
-						?>
-            </ul>
         </div>
     </div>
 </nav>
@@ -168,7 +132,7 @@ else{
                                               $sql="SELECT * from jasa where status=1";
                                               $result = $conn->query($sql);
                                               while ($row = $result->fetch_assoc()) {
-                                                $isi="<option value='".$row['namaJasa']."'>".$row['namaJasa']."</option>";
+                                                $isi="<option value='".$row['idJasa']."'>".$row['namaJasa']."</option>";
                                                 echo $isi;
                                               }
                                             ?>
@@ -221,6 +185,22 @@ else{
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col">
+                                    <div id="time-field" class="input-group">
+                                        <select class="form-select-lg" name="durasi" required>
+                                            <option selected value="Belum Memilih Durasi">--Pilih Durasi--</option>
+                                            <option value="30">30 Menit</option>
+                                            <option value="60">60 Menit</option>
+                                            <option value="90">90 Menit</option>
+                                            <option value="120">120 Menit</option>
+                                            <option value="150">150 Menit</option>
+                                            <option value="180">180 Menit</option>
+                                            <option value="210">210 Menit</option>
+                                            <option value="240">240 Menit</option>
+                                        </select>
+                                    </div>
+                                            </div>
+
                             </div>
                             <input type="hidden" name="wa" value="6285157774134">
                             <button class="button" type="submit" id="submit" name="submit">Submit</button>

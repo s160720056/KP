@@ -6,6 +6,7 @@ $tanggalBooking = date('Y-m-d');
 $id = "";
 $durasiBooking = 1;
 $namaBooking = "";
+$error="";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -18,13 +19,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $namaBooking = isset($_POST['namaBooking']) ? $_POST['namaBooking'] : "";
         $idJasa = isset($_POST['idJasa']) ? $_POST['idJasa'] : "";
-        $status = 1;
+        $status = 0;
         //check if date(12/09/2023) < today and time(13:00) < now
         $tanggalBooking = date('Y-m-d', strtotime($tanggalBooking));
         $waktuBooking = date('H:i:s', strtotime($waktuBooking));
         $tanggalBooking = $tanggalBooking . " " . $waktuBooking;
         $tanggalBooking = date('Y-m-d H:i:s', strtotime($tanggalBooking));
         $now = date('Y-m-d H:i:s');
+        $error="";
        
 
 
@@ -35,44 +37,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $tanggalBooking = date('Y-m-d ', strtotime($tanggalBooking));
         //      echo "$tanggalBooking<br>";
         // echo $waktuBooking;
+
             $sql = "SELECT * FROM bookings WHERE tanggalBooking=? AND waktuBooking=?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ss", $tanggalBooking, $waktuBooking);
             $stmt->execute();
             $result = $stmt->get_result();
+
           
             if ($result->num_rows > 0) {
                 // Date and time are not available
                 echo "<script>alert('Tanggal dan Waktu Sudah Terpakai')</script>";
+                $error="Tanggal dan Waktu Sudah Terpakai";
             } else {
                 // Date and time are available
-                $sql = "INSERT INTO `bookings` (`tanggalBooking`, `waktuBooking`, `durasiBooking`, `namaBooking`, `statusBooking`, `idJasa`) VALUES (?, ?, ?, ?,?, ?)";
+                $error="else";
+                $sql = "INSERT INTO `bookings` (`tanggalBooking`, `waktuBooking`, `durasiBooking`, `namaBooking`, `statusBooking`, `idJasa`,`idUser`) VALUES (?, ?, ?, ?,?, ?,0)";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("ssisii", $tanggalBooking, $waktuBooking, $durasiBooking, $namaBooking, $status, $idJasa);
-                // $stmt->execute();
+                $stmt->bind_param("ssdssi", $tanggalBooking, $waktuBooking, $durasiBooking, $namaBooking, $status, $idJasa);
+
+                $stmt->execute();
                 // Header redirection can be done here if needed.
+                header("location:booking.php");
             }
 
-            // //check if date and time is available
-            // $sql="SELECT * from bookings where tanggalBooking='$tanggalBooking' and waktuBooking='$waktuBooking' ";
-            // $result = $conn->query($sql);
-            // if ($result->num_rows > 0) {
-            //     //date and time is not available
-            //     echo "<script>alert('Tanggal dan Waktu Sudah Terpakai')</script>";
-            // } else {
-            //     //date and time is available
-            //     $sql = "INSERT INTO `bookings` (`tanggalBooking`, `waktuBooking`, `durasiBooking`, `namaBooking`, `statusBooking`, `idJasa`) VALUES (?, ?, ?, ?,?, ?)";
-            //     $hasil = $conn->prepare($sql);
-            //     $hasil->bind_param("ssisii", $tanggalBooking, $waktuBooking, $durasiBooking, $namaBooking,$status, $idJasa);
-            //     $hasil->execute();
-            //     // header("location:booking.php");
-            // }
+     
         }
     }
 } else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET['idDell'])) {
         $id = $_GET['idDell'];
-        $sql = "DELETE FROM bookings WHERE idBooking=$id";
+       //set status to 2
+        $sql = "UPDATE bookings SET statusBooking='2' WHERE idBooking=$id";
         $result = $conn->query($sql);
         header("location:booking.php");
     }
@@ -81,6 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $isi = "
 <div class='card mb-4' style='margin-top:10%'>
     <div class='card-header'>
+    <h1 class='text-center'>Error:$error</h1>
        <h1>";
 if (isset($_GET['idEdit'])) {
     $id = $_GET['idEdit'];
@@ -135,8 +132,8 @@ $isi .= "
             </select>
             </div>
             <div class='mb-3'>
-                <label for='durasiBooking' class='form-label'><b>Durasi Booking (Jam)</b></label>
-                <input type='number' class='form-control' id='durasiBooking' name='durasiBooking' min='1' value='$durasiBooking' required>
+                <label for='durasiBooking' class='form-label'><b>Durasi Booking (Menit)</b></label>
+                <input type='number' class='form-control' id='durasiBooking' name='durasiBooking'  min='1' value='$durasiBooking' required>
             </div>";
 $isi .= "<div class='mb-3'>
                 <label for='namaBooking' class='form-label'><b>Nama Booking</b></label>
@@ -165,4 +162,6 @@ $isi .= "
     </div>
 </div>";
 
+
 include 'index.php';
+?>
